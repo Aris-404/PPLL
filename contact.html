@@ -1,200 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <title>iCREAM - Ice Cream Shop Website Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
+  <head>
+    <meta charset="utf-8" />
+    <title>GlamUp - Beauty & Make Up Website</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Make Up, Beauty, Skincare" name="keywords" />
+    <meta
+      content="Professional Make Up & Beauty Care Website Template"
+      name="description"
+    />
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="img/favicon.ico" rel="icon" />
 
     <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-</head>
+    <link href="css/style.css" rel="stylesheet" />
 
-<body>
+    <!-- Custom Contact Page Styles -->
+    <style>
+      /* Contact Info Cards Styling */
+      .contact-info-card {
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+      }
+
+      .contact-info-card .contact-icon {
+        transition: all 0.3s ease;
+      }
+
+      .contact-info-card:hover .contact-icon {
+        transform: scale(1.1);
+      }
+
+      /* Contact Methods Styling */
+      .contact-method {
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+      }
+
+      .contact-method:hover {
+        border-left-color: #f195b2;
+        transform: translateX(5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+      }
+
+      .contact-method .method-icon {
+        transition: all 0.3s ease;
+      }
+
+      .contact-method:hover .method-icon {
+        transform: scale(1.1);
+      }
+
+      /* Social Media Icon Colors */
+      .whatsapp-icon {
+        color: #25d366 !important;
+      }
+
+      .phone-icon {
+        color: #007bff !important;
+      }
+
+      .instagram-icon {
+        color: #e4405f !important;
+      }
+
+      .facebook-icon {
+        color: #1877f2 !important;
+      }
+
+      /* Icon hover effects */
+      .contact-method:hover .whatsapp-icon {
+        color: #128c7e !important;
+      }
+
+      .contact-method:hover .phone-icon {
+        color: #0056b3 !important;
+      }
+
+      .contact-method:hover .instagram-icon {
+        color: #c13584 !important;
+      }
+
+      .contact-method:hover .facebook-icon {
+        color: #166fe5 !important;
+      }
+
+      /* Responsive adjustments for contact section */
+      @media (max-width: 767.98px) {
+        .contact-method {
+          margin-bottom: 15px;
+        }
+
+        .contact-info-card {
+          margin-bottom: 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
     <!-- Topbar Start -->
     <div class="container-fluid bg-primary py-3 d-none d-md-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-white pr-3" href="">FAQs</a>
-                        <span class="text-white">|</span>
-                        <a class="text-white px-3" href="">Help</a>
-                        <span class="text-white">|</span>
-                        <a class="text-white pl-3" href="">Support</a>
-                    </div>
-                </div>
-                <div class="col-md-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a class="text-white pl-3" href="">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+            <div class="d-inline-flex align-items-center">
+              <a class="text-white pr-3" href="">FAQs</a>
+              <span class="text-white">|</span>
+              <a class="text-white px-3" href="">Help</a>
+              <span class="text-white">|</span>
+              <a class="text-white px-3" href="">Support</a>
+              <span class="text-white">|</span>
+              <a class="text-white pl-3" href="">Contact</a>
             </div>
+          </div>
+          <div class="col-md-6 text-center text-lg-right">
+            <div class="d-inline-flex align-items-center">
+              <a class="text-white px-3" href="">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a class="text-white px-3" href="">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a class="text-white px-3" href="">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a class="text-white px-3" href="">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Topbar End -->
 
-
     <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">
-        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-            <nav class="navbar navbar-expand-lg bg-white navbar-light shadow p-lg-0">
-                <a href="index.html" class="navbar-brand d-block d-lg-none">
-                    <h1 class="m-0 display-4 text-primary"><span class="text-secondary">i</span>CREAM</h1>
-                </a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="product.html" class="nav-item nav-link">Product</a>
-                    </div>
-                    <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
-                        <h1 class="m-0 display-4 text-primary"><span class="text-secondary">i</span>CREAM</h1>
-                    </a>
-                    <div class="navbar-nav mr-auto py-0">
-                        <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="gallery.html" class="nav-item nav-link">Gallery</a>
-                        <a href="contact.html" class="nav-item nav-link active">Contact</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
+      <div
+        class="container-lg position-relative p-0 px-lg-3"
+        style="z-index: 9"
+      >
+        <nav
+          class="navbar navbar-expand-lg bg-white navbar-light shadow p-lg-0"
+        >
+          <a href="index.html" class="navbar-brand d-block d-lg-none">
+            <h1 class="m-0 display-4 text-primary">
+              <span class="text-secondary">Glam</span>Up
+            </h1>
+          </a>
+          <button
+            type="button"
+            class="navbar-toggler"
+            data-toggle="collapse"
+            data-target="#navbarCollapse"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-between"
+            id="navbarCollapse"
+          >
+            <div class="navbar-nav ml-auto py-0">
+              <a href="index.html" class="nav-item nav-link">Home</a>
+              <a href="about.html" class="nav-item nav-link">About</a>
+              <a href="product.html" class="nav-item nav-link">Products</a>
+            </div>
+            <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
+              <h1 class="m-0 display-4 text-primary">
+                <span class="text-secondary">Glam</span>Up
+              </h1>
+            </a>
+            <div class="navbar-nav mr-auto py-0">
+              <a href="service.html" class="nav-item nav-link">Services</a>
+              <a href="gallery.html" class="nav-item nav-link">Gallery</a>
+              <a href="contact.html" class="nav-item nav-link">Rekomendasi</a>
+            </div>
+          </div>
+        </nav>
+      </div>
     </div>
     <!-- Navbar End -->
 
-
     <!-- Header Start -->
-    <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
-        <div class="container text-center py-5">
-            <h1 class="text-white display-3 mt-lg-5">Contact</h1>
-            <div class="d-inline-flex align-items-center text-white">
-                <p class="m-0"><a class="text-white" href="">Home</a></p>
-                <i class="fa fa-circle px-3"></i>
-                <p class="m-0">Contact</p>
-            </div>
+    <div
+      class="jumbotron jumbotron-fluid page-header"
+      style="margin-bottom: 90px"
+    >
+      <div class="container text-center py-5">
+        <h1 class="text-white display-3 mt-lg-5">Contact</h1>
+        <div class="d-inline-flex align-items-center text-white">
+          <p class="m-0"><a class="text-white" href="">Home</a></p>
+          <i class="fa fa-circle px-3"></i>
+          <p class="m-0">Contact</p>
         </div>
+      </div>
     </div>
     <!-- Header End -->
 
-
     <!-- Contact Start -->
     <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <h1 class="section-title position-relative text-center mb-5">Contact Us For Any Query</h1>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-9">
-                    <div class="contact-form bg-light rounded p-5">
-                        <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                            <div class="form-row">
-                                <div class="col-sm-6 control-group">
-                                    <input type="text" class="form-control p-4" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="col-sm-6 control-group">
-                                    <input type="email" class="form-control p-4" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <input type="text" class="form-control p-4" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <textarea class="form-control p-4" rows="6" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div>
-                                <button class="btn btn-primary btn-block py-3 px-5" type="submit" id="sendMessageButton">Send Message</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h1 class="section-title position-relative text-center mb-5">
+              Hubungi Kami
+            </h1>
+            <p class="text-center mb-5">
+              Kami siap membantu Anda dengan layanan kecantikan terbaik. Jangan
+              ragu untuk menghubungi kami melalui berbagai cara berikut.
+            </p>
+          </div>
         </div>
+
+        <!-- Contact Info Cards -->
+        <div class="row justify-content-center mb-5">
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div
+              class="contact-info-card bg-white rounded shadow-sm p-4 h-100 text-center"
+            >
+              <div class="contact-icon mb-3">
+                <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+              </div>
+              <h5 class="mb-3">Alamat Kami</h5>
+              <p class="mb-0">
+                Jl. Raya Telang,<br />Perumahan Telang Indah<br />Bangkalan,
+                Madura
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div
+              class="contact-info-card bg-white rounded shadow-sm p-4 h-100 text-center"
+            >
+              <div class="contact-icon mb-3">
+                <i class="fas fa-clock fa-2x text-primary"></i>
+              </div>
+              <h5 class="mb-3">Jam Operasional</h5>
+              <p class="mb-1">
+                <strong>Senin - Sabtu</strong><br />09:00 - 19:00 WIB
+              </p>
+              <p class="mb-0"><strong>Minggu</strong><br />Tutup</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div
+              class="contact-info-card bg-white rounded shadow-sm p-4 h-100 text-center"
+            >
+              <div class="contact-icon mb-3">
+                <i class="fas fa-envelope fa-2x text-primary"></i>
+              </div>
+              <h5 class="mb-3">Email</h5>
+              <p class="mb-0">
+                <a href="mailto:info@glamup.com" class="text-decoration-none"
+                  >info@glamup.com</a
+                ><br />
+                <a href="mailto:beauty@glamup.com" class="text-decoration-none"
+                  >beauty@glamup.com</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Methods -->
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="contact-methods rounded p-5">
+              <h3 class="text-center mb-4">Cara Lain Menghubungi Kami</h3>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div
+                    class="contact-method d-flex align-items-center p-3 bg-white rounded shadow-sm"
+                  >
+                    <div class="method-icon mr-3">
+                      <i class="fab fa-whatsapp fa-2x whatsapp-icon"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-1">WhatsApp</h6>
+                      <a
+                        href="https://wa.me/6287862776120"
+                        class="text-decoration-none"
+                        target="_blank"
+                      >
+                        0878 6277 6120
+                      </a>
+                      <p class="mb-0 small text-muted">
+                        Chat langsung dengan kami
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                  <div
+                    class="contact-method d-flex align-items-center p-3 bg-white rounded shadow-sm"
+                  >
+                    <div class="method-icon mr-3">
+                      <i class="fas fa-phone fa-2x phone-icon"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-1">Telepon</h6>
+                      <a href="tel:+6287862776120" class="text-decoration-none">
+                        0878 6277 6120
+                      </a>
+                      <p class="mb-0 small text-muted">
+                        Hubungi untuk konsultasi
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                  <div
+                    class="contact-method d-flex align-items-center p-3 bg-white rounded shadow-sm"
+                  >
+                    <div class="method-icon mr-3">
+                      <i class="fab fa-instagram fa-2x instagram-icon"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-1">Instagram</h6>
+                      <a
+                        href="https://instagram.com/glamup_beauty"
+                        class="text-decoration-none"
+                        target="_blank"
+                      >
+                        @glamup_beauty
+                      </a>
+                      <p class="mb-0 small text-muted">Lihat portfolio kami</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                  <div
+                    class="contact-method d-flex align-items-center p-3 bg-white rounded shadow-sm"
+                  >
+                    <div class="method-icon mr-3">
+                      <i class="fab fa-facebook fa-2x facebook-icon"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-1">Facebook</h6>
+                      <a
+                        href="https://facebook.com/glamupbeauty"
+                        class="text-decoration-none"
+                        target="_blank"
+                      >
+                        GlamUp Beauty
+                      </a>
+                      <p class="mb-0 small text-muted">
+                        Follow untuk tips kecantikan
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Call to Action -->
+              <div class="text-center mt-4">
+                <h5 class="mb-3">Siap untuk Tampil Lebih Cantik?</h5>
+                <p class="mb-4">
+                  Hubungi kami sekarang untuk konsultasi gratis dan dapatkan
+                  penawaran menarik!
+                </p>
+                <a
+                  href="https://wa.me/6287862776120"
+                  class="btn btn-primary btn-lg px-5 mr-3"
+                  target="_blank"
+                >
+                  <i class="fab fa-whatsapp mr-2"></i>Chat WhatsApp
+                </a>
+                <a
+                  href="tel:+6287862776120"
+                  class="btn btn-outline-primary btn-lg px-5"
+                >
+                  <i class="fas fa-phone mr-2"></i>Telepon Sekarang
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Contact End -->
 
-
     <!-- Footer Start -->
-    <div class="container-fluid footer bg-light py-5" style="margin-top: 90px;">
-        <div class="container text-center py-5">
+    <div class="container-fluid footer bg-light py-5" style="margin-top: 90px">
+      <div class="container text-center py-5">
+        <div class="row">
+          <div class="col-12 mb-4">
+            <a href="index.html" class="navbar-brand m-0">
+              <h1 class="m-0 mt-n2 display-4 text-primary">
+                <span class="text-secondary">Glam</span>Up
+              </h1>
+            </a>
+          </div>
+          <div class="col-12 mb-4">
+            <a class="btn btn-outline-secondary btn-social mr-2" href="#"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a class="btn btn-outline-secondary btn-social mr-2" href="#"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a class="btn btn-outline-secondary btn-social mr-2" href="#"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a class="btn btn-outline-secondary btn-social" href="#"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+          <div class="col-12 mt-2 mb-4">
             <div class="row">
-                <div class="col-12 mb-4">
-                    <a href="index.html" class="navbar-brand m-0">
-                        <h1 class="m-0 mt-n2 display-4 text-primary"><span class="text-secondary">i</span>CREAM</h1>
-                    </a>
-                </div>
-                <div class="col-12 mb-4">
-                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-secondary btn-social" href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-                <div class="col-12 mt-2 mb-4">
-                    <div class="row">
-                        <div class="col-sm-6 text-center text-sm-right border-right mb-3 mb-sm-0">
-                            <h5 class="font-weight-bold mb-2">Get In Touch</h5>
-                            <p class="mb-2">123 Street, New York, USA</p>
-                            <p class="mb-0">+012 345 67890</p>
-                        </div>
-                        <div class="col-sm-6 text-center text-sm-left">
-                            <h5 class="font-weight-bold mb-2">Opening Hours</h5>
-                            <p class="mb-2">Mon – Sat, 8AM – 5PM</p>
-                            <p class="mb-0">Sunday: Closed</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <p class="m-0">&copy; <a href="#">Domain</a>. All Rights Reserved. Designed by <a href="https://htmlcodex.com">HTML Codex</a>
-                    </p>
-                </div>
+              <div
+                class="col-sm-6 text-center text-sm-right border-right mb-3 mb-sm-0"
+              >
+                <h5 class="font-weight-bold mb-2">Hubungi Kami</h5>
+                <p class="mb-2">Jl. Raya Telang, Perumahan Telang Indah.</p>
+                <p class="mb-0">0878 6277 6120</p>
+              </div>
+              <div class="col-sm-6 text-center text-sm-left">
+                <h5 class="font-weight-bold mb-2">Jam Operasional</h5>
+                <p class="mb-2">Sen – Sab, 9AM – 7PM</p>
+                <p class="mb-0">Minggu : Tutup</p>
+              </div>
             </div>
+          </div>
+          <div class="col-12">
+            <p class="m-0">
+              &copy; <a href="#">GlamUp</a>. All Rights Reserved.
+            </p>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Footer End -->
 
-
     <!-- Back to Top -->
-    <a href="#" class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
+    <a href="#" class="btn btn-secondary px-2 back-to-top"
+      ><i class="fa fa-angle-double-up"></i
+    ></a>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -205,12 +474,7 @@
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
 
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-</body>
-
+  </body>
 </html>
