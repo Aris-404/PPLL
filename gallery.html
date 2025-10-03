@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>iCREAM - Ice Cream Shop Website Template</title>
+    <title>GlamUp - Beauty & Make Up Website</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -24,6 +24,22 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- Custom CSS untuk samakan ukuran gambar -->
+    <style>
+        .portfolio-item img {
+            height: 300px;       /* tinggi seragam */
+            width: 100%;         /* lebar full */
+            object-fit: cover;   /* agar proporsional, tidak gepeng */
+            border-radius: 8px;  /* opsional, biar lebih estetik */
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-item img {
+                height: 200px;   /* lebih kecil di layar HP */
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -70,7 +86,7 @@
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-white navbar-light shadow p-lg-0">
                 <a href="index.html" class="navbar-brand d-block d-lg-none">
-                    <h1 class="m-0 display-4 text-primary"><span class="text-secondary">i</span>CREAM</h1>
+                    <h1 class="m-0 display-4 text-primary"><span class="text-secondary">Glam</span>Up</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -82,7 +98,7 @@
                         <a href="product.html" class="nav-item nav-link">Product</a>
                     </div>
                     <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
-                        <h1 class="m-0 display-4 text-primary"><span class="text-secondary">i</span>CREAM</h1>
+                        <h1 class="m-0 display-4 text-primary"><span class="text-secondary">Glam</span>Up</h1>
                     </a>
                     <div class="navbar-nav mr-auto py-0">
                         <a href="service.html" class="nav-item nav-link">Service</a>
@@ -115,16 +131,18 @@
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-5">
-                    <h1 class="section-title position-relative text-center mb-5">Delicious Ice Cream Made From Our Very Own Organic Milk</h1>
+                    <h1 class="section-title position-relative text-center mb-5">
+                        Premium Beauty Products Made From Natural & Organic Ingredients
+                    </h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 text-center">
                     <ul class="list-inline mb-4 pb-2" id="portfolio-flters">
-                        <li class="btn btn-sm btn-outline-primary m-1 active"  data-filter="*">All</li>
-                        <li class="btn btn-sm btn-outline-primary m-1" data-filter=".first">Cone</li>
-                        <li class="btn btn-sm btn-outline-primary m-1" data-filter=".second">Vanilla</li>
-                        <li class="btn btn-sm btn-outline-primary m-1" data-filter=".third">Chocolate</li>
+                        <li class="btn btn-sm btn-outline-primary m-1 active" data-filter="*">All</li>
+                        <li class="btn btn-sm btn-outline-primary m-1" data-filter=".first">Kosmetik Mata</li>
+                        <li class="btn btn-sm btn-outline-primary m-1" data-filter=".second">Kosmetik Bibir</li>
+                        <li class="btn btn-sm btn-outline-primary m-1" data-filter=".third">Kosmetik Wajah (Skincare)</li>
                     </ul>
                 </div>
             </div>
@@ -137,7 +155,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 p-0 portfolio-item second">
+                <div class="col-lg-4 col-md-6 p-0 portfolio-item first">
                     <div class="position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="img/portfolio-2.jpg" alt="">
                         <a class="portfolio-btn" href="img/portfolio-2.jpg" data-lightbox="portfolio">
@@ -145,7 +163,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 p-0 portfolio-item third">
+                <div class="col-lg-4 col-md-6 p-0 portfolio-item second">
                     <div class="position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="img/portfolio-3.jpg" alt="">
                         <a class="portfolio-btn" href="img/portfolio-3.jpg" data-lightbox="portfolio">
@@ -153,7 +171,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 p-0 portfolio-item first">
+                <div class="col-lg-4 col-md-6 p-0 portfolio-item second">
                     <div class="position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="img/portfolio-4.jpg" alt="">
                         <a class="portfolio-btn" href="img/portfolio-4.jpg" data-lightbox="portfolio">
@@ -161,7 +179,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 p-0 portfolio-item second">
+                <div class="col-lg-4 col-md-6 p-0 portfolio-item third">
                     <div class="position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="img/portfolio-5.jpg" alt="">
                         <a class="portfolio-btn" href="img/portfolio-5.jpg" data-lightbox="portfolio">
@@ -189,7 +207,7 @@
             <div class="row">
                 <div class="col-12 mb-4">
                     <a href="index.html" class="navbar-brand m-0">
-                        <h1 class="m-0 mt-n2 display-4 text-primary"><span class="text-secondary">i</span>CREAM</h1>
+                        <h1 class="m-0 mt-n2 display-4 text-primary"><span class="text-secondary">Glam</span>Up</h1>
                     </a>
                 </div>
                 <div class="col-12 mb-4">
@@ -201,20 +219,19 @@
                 <div class="col-12 mt-2 mb-4">
                     <div class="row">
                         <div class="col-sm-6 text-center text-sm-right border-right mb-3 mb-sm-0">
-                            <h5 class="font-weight-bold mb-2">Get In Touch</h5>
-                            <p class="mb-2">123 Street, New York, USA</p>
-                            <p class="mb-0">+012 345 67890</p>
+                            <h5 class="font-weight-bold mb-2">Hubungi Kami</h5>
+                            <p class="mb-2">Jl. Raya Telang, Perumahan Telang Indah.</p>
+                            <p class="mb-0">0878 6277 6120</p>
                         </div>
                         <div class="col-sm-6 text-center text-sm-left">
-                            <h5 class="font-weight-bold mb-2">Opening Hours</h5>
-                            <p class="mb-2">Mon – Sat, 8AM – 5PM</p>
-                            <p class="mb-0">Sunday: Closed</p>
+                            <h5 class="font-weight-bold mb-2">Jam Operasional</h5>
+                            <p class="mb-2">Sen – Sab, 9AM – 7PM</p>
+                            <p class="mb-0">Minggu : Tutup</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-12">
-                    <p class="m-0">&copy; <a href="#">Domain</a>. All Rights Reserved. Designed by <a href="https://htmlcodex.com">HTML Codex</a>
-                    </p>
+                    <p class="m-0">&copy; <a href="#">GlamUp</a>. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
