@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>GlamUp - Beauty & Make Up Website</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
+    <meta content="Make Up, Beauty, Skincare" name="keywords">
+    <meta content="Professional Make Up & Beauty Care Website Template" name="description">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -25,18 +25,43 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
-    <!-- Custom CSS untuk samakan ukuran gambar -->
+    <!-- Custom Portfolio Fix -->
     <style>
-        .portfolio-item img {
-            height: 300px;       /* tinggi seragam */
-            width: 100%;         /* lebar full */
-            object-fit: cover;   /* agar proporsional, tidak gepeng */
-            border-radius: 8px;  /* opsional, biar lebih estetik */
+        /* ==== FIX PORTFOLIO IMAGE SIZE ==== */
+        .portfolio-item {
+            height: 300px; /* tinggi seragam */
+            overflow: hidden;
+            position: relative;
         }
 
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* jaga proporsi tanpa distorsi */
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-btn {
+            opacity: 1;
+        }
+
+        /* Responsif: lebih kecil di layar hp */
         @media (max-width: 768px) {
-            .portfolio-item img {
-                height: 200px;   /* lebih kecil di layar HP */
+            .portfolio-item {
+                height: 200px;
             }
         }
     </style>
@@ -53,26 +78,17 @@
                         <span class="text-white">|</span>
                         <a class="text-white px-3" href="">Help</a>
                         <span class="text-white">|</span>
-                        <a class="text-white pl-3" href="">Support</a>
+                        <a class="text-white px-3" href="">Support</a>
+                        <span class="text-white">|</span>
+                        <a class="text-white pl-3" href="contact.html">Contact</a>
                     </div>
                 </div>
                 <div class="col-md-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a class="text-white pl-3" href="">
-                            <i class="fab fa-youtube"></i>
-                        </a>
+                        <a class="text-white px-3" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="text-white px-3" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="text-white px-3" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="text-white px-3" href=""><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -95,15 +111,15 @@
                     <div class="navbar-nav ml-auto py-0">
                         <a href="index.html" class="nav-item nav-link">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="product.html" class="nav-item nav-link">Product</a>
+                        <a href="product.html" class="nav-item nav-link">Products</a>
                     </div>
                     <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
                         <h1 class="m-0 display-4 text-primary"><span class="text-secondary">Glam</span>Up</h1>
                     </a>
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="service.html" class="nav-item nav-link">Service</a>
+                        <a href="service.html" class="nav-item nav-link">Services</a>
                         <a href="gallery.html" class="nav-item nav-link active">Gallery</a>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="rekomendasi.html" class="nav-item nav-link">Rekomendasi</a>
                     </div>
                 </div>
             </nav>
