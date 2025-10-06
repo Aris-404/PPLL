@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlamUp</title>
+    <title>Glam Up</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -387,6 +387,7 @@
             text-align: center;
             padding: 40px 20px;
             color: var(--text-light);
+            font-style: italic;
             font-size: 1.1rem;
         }
 
@@ -729,7 +730,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1><i class="fas fa-palette"></i> BeautyFinder</h1>
+            <h1><i class="fas fa-palette"></i> GlamUp</h1>
             <p>Sistem Rekomendasi Kosmetik Personal</p>
             
             <div class="search-container">
@@ -1103,7 +1104,7 @@
         ];
 
         let allProducts = productsData;
-        let viewHistory = JSON.parse(localStorage.getItem('beautyFinderHistory')) || [];
+        let viewHistory = JSON.parse(localStorage.getItem('glamUpHistory')) || [];
 
         document.addEventListener('DOMContentLoaded', function() {
             loadInitialData();
@@ -1531,7 +1532,7 @@
                 viewHistory = viewHistory.slice(0, 5);
             }
             
-            localStorage.setItem('beautyFinderHistory', JSON.stringify(viewHistory));
+            localStorage.setItem('glamUpHistory', JSON.stringify(viewHistory));
             loadHistory();
         }
 
@@ -1560,7 +1561,7 @@
 
         function clearHistory() {
             viewHistory = [];
-            localStorage.setItem('beautyFinderHistory', JSON.stringify(viewHistory));
+            localStorage.setItem('glamUpHistory', JSON.stringify(viewHistory));
             loadHistory();
         }
     </script>
