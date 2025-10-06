@@ -1,2 +1,0 @@
-# PPLL
-kelompok 1 
