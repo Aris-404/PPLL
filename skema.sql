@@ -1,8 +1,8 @@
 -- ==========================================
 -- CREATE DATABASE (opsional)
 -- ==========================================
-CREATE DATABASE IF NOT EXISTS webdata;
-USE webdata;
+-- CREATE DATABASE IF NOT EXISTS webdata;
+-- USE webdata;
 
 -- ==========================================
 -- TABLE: users (untuk login)
@@ -19,9 +19,9 @@ CREATE TABLE users (
 -- ==========================================
 CREATE TABLE service (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    judul VARCHAR(255) NOT NULL
+    judul VARCHAR(255) NOT NULL,
     deskripsi TEXT,
-    gambar VARCHAR(255) NOT NULL,
+    gambar VARCHAR(255) NOT NULL
 );
 
 -- ==========================================
