@@ -1,3 +1,7 @@
+<?php 
+include 'includes/db.php'; // hanya koneksi database
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,8 +9,8 @@
     <meta charset="utf-8">
     <title>GlamUp - Beauty & Make Up Website</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
+    <meta content="Make Up, Beauty, Skincare" name="keywords">
+    <meta content="Professional Make Up & Beauty Care Website Template" name="description">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -25,25 +29,25 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
-    <!-- Custom CSS untuk samakan ukuran gambar -->
+    <!-- Custom CSS untuk gambar grid -->
     <style>
         .portfolio-item img {
-            height: 300px;       /* tinggi seragam */
-            width: 100%;         /* lebar full */
-            object-fit: cover;   /* agar proporsional, tidak gepeng */
-            border-radius: 8px;  /* opsional, biar lebih estetik */
+            width: 100%;
+            height: 300px;      /* ukuran seragam */
+            object-fit: cover;  /* biar penuh dan rapi, meski terpotong */
+            border-radius: 8px;
         }
 
         @media (max-width: 768px) {
             .portfolio-item img {
-                height: 200px;   /* lebih kecil di layar HP */
+                height: 200px;
             }
         }
     </style>
 </head>
 
 <body>
-     <!-- Topbar Start -->
+    <!-- Topbar Start -->
     <div class="container-fluid bg-primary py-3 d-none d-md-block">
         <div class="container">
             <div class="row">
@@ -79,7 +83,6 @@
     </div>
     <!-- Topbar End -->
 
-
     <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
@@ -94,15 +97,15 @@
                     <div class="navbar-nav ml-auto py-0">
                         <a href="index.html" class="nav-item nav-link">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="product.html" class="nav-item nav-link">Product</a>
+                        <a href="product.html" class="nav-item nav-link">Products</a>
                     </div>
                     <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
                         <h1 class="m-0 display-4 text-primary"><span class="text-secondary">Glam</span>Up</h1>
                     </a>
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="gallery.html" class="nav-item nav-link active">Gallery</a>
-                        <a href="contact.html" class="nav-item nav-link">Rekomendasi</a>
+                        <a href="service.html" class="nav-item nav-link">Services</a>
+                        <a href="gallery.php" class="nav-item nav-link active">Gallery</a>
+                        <a href="rekomendasi.html" class="nav-item nav-link">Rekomendasi</a>
                     </div>
                 </div>
             </nav>
@@ -110,20 +113,18 @@
     </div>
     <!-- Navbar End -->
 
-
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
             <h1 class="text-white display-3 mt-lg-5">Gallery</h1>
             <div class="d-inline-flex align-items-center text-white">
-                <p class="m-0"><a class="text-white" href="">Home</a></p>
+                <p class="m-0"><a class="text-white" href="index.html">Home</a></p>
                 <i class="fa fa-circle px-3"></i>
                 <p class="m-0">Gallery</p>
             </div>
         </div>
     </div>
     <!-- Header End -->
-
 
     <!-- Portfolio Start -->
     <div class="container-fluid py-5 px-0">
@@ -135,6 +136,8 @@
                     </h1>
                 </div>
             </div>
+
+            <!-- Filter -->
             <div class="row">
                 <div class="col-12 text-center">
                     <ul class="list-inline mb-4 pb-2" id="portfolio-flters">
@@ -145,60 +148,31 @@
                     </ul>
                 </div>
             </div>
+
             <div class="row m-0 portfolio-container">
-                <div class="col-lg-4 col-md-6 p-0 portfolio-item first">
+                <?php
+                $query = mysqli_query($conn, "SELECT g.*, k.nama_kategori 
+                                             FROM gallery g 
+                                             LEFT JOIN kategori k ON g.kategori_id = k.id 
+                                             ORDER BY g.id DESC");
+                while ($row = mysqli_fetch_assoc($query)) {
+                    $class = "third";
+                    if ($row['nama_kategori'] == "Kosmetik Mata") $class = "first";
+                    elseif ($row['nama_kategori'] == "Kosmetik Bibir") $class = "second";
+                ?>
+                <div class="col-lg-4 col-md-6 p-0 portfolio-item <?= $class; ?>">
                     <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/portfolio-1.jpg" alt="">
-                        <a class="portfolio-btn" href="img/portfolio-1.jpg" data-lightbox="portfolio">
+                        <img class="img-fluid w-100" src="upload/<?= $row['gambar']; ?>" alt="<?= htmlspecialchars($row['title']); ?>">
+                        <a class="portfolio-btn" href="upload/<?= $row['gambar']; ?>" data-lightbox="portfolio" title="<?= htmlspecialchars($row['title']); ?>">
                             <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 p-0 portfolio-item first">
-                    <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/portfolio-2.jpg" alt="">
-                        <a class="portfolio-btn" href="img/portfolio-2.jpg" data-lightbox="portfolio">
-                            <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 p-0 portfolio-item second">
-                    <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/portfolio-3.jpg" alt="">
-                        <a class="portfolio-btn" href="img/portfolio-3.jpg" data-lightbox="portfolio">
-                            <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 p-0 portfolio-item second">
-                    <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/portfolio-4.jpg" alt="">
-                        <a class="portfolio-btn" href="img/portfolio-4.jpg" data-lightbox="portfolio">
-                            <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 p-0 portfolio-item third">
-                    <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/portfolio-5.jpg" alt="">
-                        <a class="portfolio-btn" href="img/portfolio-5.jpg" data-lightbox="portfolio">
-                            <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 p-0 portfolio-item third">
-                    <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/portfolio-6.jpg" alt="">
-                        <a class="portfolio-btn" href="img/portfolio-6.jpg" data-lightbox="portfolio">
-                            <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
-                        </a>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </div>
     <!-- Portfolio End -->
-
 
     <!-- Footer Start -->
     <div class="container-fluid footer bg-light py-5" style="margin-top: 90px;">
@@ -237,12 +211,8 @@
     </div>
     <!-- Footer End -->
 
-
-    <!-- Back to Top -->
     <a href="#" class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-
-    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
@@ -250,13 +220,6 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
-
 </html>
