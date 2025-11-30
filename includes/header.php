@@ -19,6 +19,12 @@
 
     <!-- Bootstrap CDN (optional, boleh hapus jika tidak pakai) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -37,7 +43,7 @@
             <li class="nav-item"><a href="produk.php" class="nav-link">Produk</a></li>
             <li class="nav-item"><a href="tim.php" class="nav-link">Tim</a></li>
             <li class="nav-item"><a href="testimoni.php" class="nav-link">Testimoni</a></li>
-            <li class="nav-item"><a href="gallery.php" class="nav-link">Gallery</a></li>
+            <li class="nav-item"><a href="./admin/gallery-index.php" class="nav-link">Gallery</a></li>
             <li class="nav-item"><a href="setting.php" class="nav-link">Setting</a></li>
         </ul>
 
