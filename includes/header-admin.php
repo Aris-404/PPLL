@@ -39,12 +39,12 @@
 
     <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item"><a href="index.php" class="nav-link">Dashboard</a></li>
-            <li class="nav-item"><a href="produk.php" class="nav-link">Produk</a></li>
-            <li class="nav-item"><a href="tim.php" class="nav-link">Tim</a></li>
-            <li class="nav-item"><a href="testimoni.php" class="nav-link">Testimoni</a></li>
-            <li class="nav-item"><a href="./admin/gallery-index.php" class="nav-link">Gallery</a></li>
-            <li class="nav-item"><a href="setting.php" class="nav-link">Setting</a></li>
+            <li class="nav-item"><a href="../index-admin.php" class="nav-link">Dashboard</a></li>
+            <li class="nav-item"><a href="../produk.php" class="nav-link">Produk</a></li>
+            <li class="nav-item"><a href="../tim.php" class="nav-link">Tim</a></li>
+            <li class="nav-item"><a href="../testimoni.php" class="nav-link">Testimoni</a></li>
+            <li class="nav-item"><a href="../admin/gallery-index.php" class="nav-link">Gallery</a></li>
+            <li class="nav-item"><a href="../setting.php" class="nav-link">Setting</a></li>
         </ul>
 
         <ul class="navbar-nav">
