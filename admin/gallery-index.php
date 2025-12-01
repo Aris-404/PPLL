@@ -1,5 +1,5 @@
 <?php 
-include '../includes/header.php';
+include '../includes/header-admin.php';
 include '../includes/db.php';
 ?>
 
@@ -106,4 +106,4 @@ $query = mysqli_query($conn, "SELECT * FROM gallery ORDER BY id DESC LIMIT $star
     </ul>
 </nav>
 
-<?php include '../includes/footer.php'; ?>
+<?php include '../includes/footer-admin.php'; ?>
