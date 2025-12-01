@@ -39,6 +39,7 @@
             <li class="nav-item"><a href="testimoni.php" class="nav-link">Testimoni</a></li>
             <li class="nav-item"><a href="gallery.php" class="nav-link">Gallery</a></li>
             <li class="nav-item"><a href="setting.php" class="nav-link">Setting</a></li>
+            <li class="nav-item"><a href="service-index.php" class="nav-link">Service</a></li>
         </ul>
 
         <ul class="navbar-nav">

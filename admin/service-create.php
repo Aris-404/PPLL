@@ -1,4 +1,4 @@
-<?php include './includes/db.php'; ?>
+<?php include '../includes/db.php'; ?>
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Upload file
   $fileName = time() . "-" . basename($_FILES["gambar"]["name"]);
-  $targetDir = "uploads/" . $fileName;
+  $targetDir = "../uploads/" . $fileName;
   move_uploaded_file($_FILES["gambar"]["tmp_name"], $targetDir);
 
   $conn->query("INSERT INTO service (judul, deskripsi, gambar) VALUES ('$judul', '$deskripsi', '$fileName')");
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<?php include './includes/header.php'; ?>
+<?php include '../includes/header.php'; ?>
 
 <div class="container py-5">
   <div class="card shadow">
@@ -48,4 +48,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 </div>
 
-<?php include './includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

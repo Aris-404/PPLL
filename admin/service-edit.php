@@ -1,4 +1,4 @@
-<?php include './includes/db.php'; ?>
+<?php include '../includes/db.php'; ?>
 
 <?php
 $id = $_GET['id'];
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<?php include './includes/header.php'; ?>
+<?php include '../includes/header.php'; ?>
 
 <div class="container py-5">
   <div class="card shadow">
@@ -61,4 +61,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 </div>
 
-<?php include './includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

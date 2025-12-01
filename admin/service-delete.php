@@ -1,4 +1,4 @@
-<?php include './includes/db.php';
+<?php include '../includes/db.php';
 
 $id = $_GET['id'];
 $data = $conn->query("SELECT gambar FROM service WHERE id=$id")->fetch_assoc();

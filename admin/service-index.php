@@ -1,5 +1,5 @@
-<?php include './includes/db.php'; ?>
-<?php include './includes/header.php'; ?>
+<?php include '../includes/db.php'; ?>
+<?php include '../includes/header.php'; ?>
 
 <div class="container py-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
@@ -27,7 +27,7 @@
           <tr>
             <td><?= $no++; ?></td>
             <td>
-              <img src="uploads/<?= $row['gambar']; ?>" width="60" class="rounded border">
+              <img src="../uploads/<?= $row['gambar']; ?>" width="60" class="rounded border">
             </td>
             <td><?= htmlspecialchars($row['judul']); ?></td>
             <td><?= nl2br(htmlspecialchars($row['deskripsi'])); ?></td>
@@ -48,4 +48,4 @@
   </table>
 </div>
 
-<?php include './includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>
