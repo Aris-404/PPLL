@@ -124,7 +124,6 @@
 
                         <?php
                         $query = $conn->query("SELECT * FROM produk ORDER BY id DESC");
-
                         if ($query->num_rows > 0) {
                             while ($produk = $query->fetch_assoc()) {
                         ?>

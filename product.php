@@ -205,6 +205,7 @@
                                 $maxLinks = 5; // jumlah maksimal nomor halaman yang ditampilkan
                                 $start = max(1, $page - floor($maxLinks / 2));
                                 $end = min($totalPages, $start + $maxLinks - 1);
+
                                 if ($end - $start + 1 < $maxLinks) {
                                     $start = max(1, $end - $maxLinks + 1);
                                 }

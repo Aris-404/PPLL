@@ -122,6 +122,7 @@
     LEFT JOIN kategori k ON p.kategori_id = k.id 
     WHERE p.id = $id
 ";
+
     $result = mysqli_query($conn, $query);
 
     // Jika data tidak ditemukan
