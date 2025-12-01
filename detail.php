@@ -1,3 +1,5 @@
+<?php include './includes/db.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -109,90 +111,115 @@
     <!-- Header End -->
 
 
+    <?php
+    // Ambil ID dari URL
+    $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+    // Query produk + kategori
+    $query = "
+    SELECT p.*, k.nama_kategori AS kategori 
+    FROM produk p 
+    LEFT JOIN kategori k ON p.kategori_id = k.id 
+    WHERE p.id = $id
+";
+    $result = mysqli_query($conn, $query);
+
+    // Jika data tidak ditemukan
+    if (mysqli_num_rows($result) == 0) {
+        echo "<div class='container text-center py-5'><h3>Produk tidak ditemukan.</h3></div>";
+        include 'footer.php';
+        exit;
+    }
+
+    // Ambil data produk
+    $produk = mysqli_fetch_assoc($result);
+    ?>
+
     <!-- Detail Start -->
     <div class="container-fluid my-5 py-5 px-0">
-    <div class="row bg-primary m-0">
-        <div class="col-md-6 px-0" style="min-height: 500px;">
-        <div class="position-relative h-100">
-            <img class="position-absolute w-100 h-100" src="img/portfolio-3.jpg" style="object-fit: cover;">
+        <div class="row bg-primary m-0">
+            <div class="col-md-6 px-0" style="min-height: 500px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute w-100 h-100"
+                        src="uploads/<?= $produk['gambar']; ?>"
+                        style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-md-6 py-5 py-md-0 px-0">
+                <div class="h-100 d-flex flex-column align-items-center justify-content-center text-center p-5">
+
+                    <!-- Kategori -->
+                    <span class="badge badge-light text-primary px-3 py-2 mb-3"
+                        style="font-size: 15px; font-weight: 500;">
+                        <?= $produk['kategori'] ?: 'Tidak ada kategori'; ?>
+                    </span>
+
+                    <!-- Nama -->
+                    <h3 class="font-weight-bold text-white mt-2 mb-3">
+                        <?= $produk['judul']; ?>
+                    </h3>
+
+                    <!-- Harga -->
+                    <h4 class="text-white mb-3" style="font-weight: 600;">
+                        Rp<?= number_format($produk['harga'], 0, ',', '.'); ?>
+                    </h4>
+
+                    <!-- Deskripsi -->
+                    <p class="text-white mb-4">
+                        <?= nl2br($produk['deskripsi']); ?>
+                    </p>
+
+                    <!-- Tombol Order -->
+                    <a href="<?= $produk['link']; ?>"
+                        class="btn btn-secondary py-3 px-5 mt-2"
+                        target="_blank">
+                        Order Now
+                    </a>
+                </div>
+            </div>
         </div>
-        </div>
-        <div class="col-md-6 py-5 py-md-0 px-0">
-        <div class="h-100 d-flex flex-column align-items-center justify-content-center text-center p-5">
-            <!-- Kategori Produk -->
-            <span class="badge badge-light text-primary px-3 py-2 mb-3" style="font-size: 15px; font-weight: 500;">
-            Kategori: Kosmetik Bibir
-            </span>
-            <!-- Nama Produk -->
-            <h3 class="font-weight-bold text-white mt-2 mb-3">
-            Wardah - Colorfit Velvet Matte Lip Mousse
-            </h3>
-            <!-- Harga -->
-            <h4 class="text-white mb-3" style="font-weight: 600;">
-              Rp73.508
-            </h4>
-            <!-- Deskripsi -->
-            <p class="text-white mb-4">
-            Wardah Colorfit Velvet Matte Lip Mousse adalah lip cream dengan tekstur mousse (seperti busa) yang diformulasikan untuk memberikan hasil akhir matte yang terasa lembut dan nyaman di bibir, sangat cocok untuk penggunaan sehari-hari.
-            </p>
-            <!-- Tombol Order -->
-            <a href="https://shopee.co.id/WARDAH-COLORFIT-VELVET-MATTE-LIP-MOUSSE-i.15918425.2636891129"
-            class="btn btn-secondary py-3 px-5 mt-2">Order Now</a>
-        </div>
-        </div>
-    </div>
     </div>
     <!-- Detail End -->
 
-
     <!-- Footer Start -->
     <div class="container-fluid footer bg-light py-5" style="margin-top: 90px">
-      <div class="container text-center py-5">
-        <div class="row">
-          <div class="col-12 mb-4">
-            <a href="index.html" class="navbar-brand m-0">
-              <h1 class="m-0 mt-n2 display-4 text-primary">
-                <span class="text-secondary">Glam</span>Up
-              </h1>
-            </a>
-          </div>
-          <div class="col-12 mb-4">
-            <a class="btn btn-outline-secondary btn-social mr-2" href="#"
-              ><i class="fab fa-twitter"></i
-            ></a>
-            <a class="btn btn-outline-secondary btn-social mr-2" href="#"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
-            <a class="btn btn-outline-secondary btn-social mr-2" href="#"
-              ><i class="fab fa-linkedin-in"></i
-            ></a>
-            <a class="btn btn-outline-secondary btn-social" href="#"
-              ><i class="fab fa-instagram"></i
-            ></a>
-          </div>
-          <div class="col-12 mt-2 mb-4">
+        <div class="container text-center py-5">
             <div class="row">
-              <div
-                class="col-sm-6 text-center text-sm-right border-right mb-3 mb-sm-0"
-              >
-                <h5 class="font-weight-bold mb-2">Hubungi Kami</h5>
-                <p class="mb-2">Jl. Raya Telang, Perumahan Telang Indah.</p>
-                <p class="mb-0">0878 6277 6120</p>
-              </div>
-              <div class="col-sm-6 text-center text-sm-left">
-                <h5 class="font-weight-bold mb-2">Jam Operasional</h5>
-                <p class="mb-2">Sen – Sab, 9AM – 7PM</p>
-                <p class="mb-0">Minggu : Tutup</p>
-              </div>
+                <div class="col-12 mb-4">
+                    <a href="index.html" class="navbar-brand m-0">
+                        <h1 class="m-0 mt-n2 display-4 text-primary">
+                            <span class="text-secondary">Glam</span>Up
+                        </h1>
+                    </a>
+                </div>
+                <div class="col-12 mb-4">
+                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-secondary btn-social" href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="col-12 mt-2 mb-4">
+                    <div class="row">
+                        <div
+                            class="col-sm-6 text-center text-sm-right border-right mb-3 mb-sm-0">
+                            <h5 class="font-weight-bold mb-2">Hubungi Kami</h5>
+                            <p class="mb-2">Jl. Raya Telang, Perumahan Telang Indah.</p>
+                            <p class="mb-0">0878 6277 6120</p>
+                        </div>
+                        <div class="col-sm-6 text-center text-sm-left">
+                            <h5 class="font-weight-bold mb-2">Jam Operasional</h5>
+                            <p class="mb-2">Sen – Sab, 9AM – 7PM</p>
+                            <p class="mb-0">Minggu : Tutup</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <p class="m-0">
+                        &copy; <a href="#">GlamUp</a>. All Rights Reserved.
+                    </p>
+                </div>
             </div>
-          </div>
-          <div class="col-12">
-            <p class="m-0">
-              &copy; <a href="#">GlamUp</a>. All Rights Reserved.
-            </p>
-          </div>
         </div>
-      </div>
     </div>
     <!-- Footer End -->
 
