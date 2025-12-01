@@ -137,13 +137,13 @@ if ($wa && $wa !== '#') {
                     <div class="navbar-nav ml-auto py-0">
                         <a href="index.php" class="nav-item nav-link <?php echo nav_active(array('index.php','index.html')); ?>">Home</a>
                         <a href="about.html" class="nav-item nav-link <?php echo nav_active(array('about.html')); ?>">About</a>
-                        <a href="product.html" class="nav-item nav-link <?php echo nav_active(array('product.html')); ?>">Products</a>
+                        <a href="product.php" class="nav-item nav-link <?php echo nav_active(array('product.php')); ?>">Products</a>
                     </div>
                     <a href="index.php" class="navbar-brand mx-5 d-none d-lg-block">
                         <h1 class="m-0 display-4 text-primary"><span class="text-secondary">Glam</span>Up</h1>
                     </a>
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="service.html" class="nav-item nav-link <?php echo nav_active(array('service.html')); ?>">Services</a>
+                        <a href="service.php" class="nav-item nav-link <?php echo nav_active(array('service.php')); ?>">Services</a>
                         <a href="gallery.php" class="nav-item nav-link <?php echo nav_active(array('gallery.php','gallery.html')); ?>">Gallery</a>
                         <a href="rekomendasi.html" class="nav-item nav-link <?php echo nav_active(array('rekomendasi.html')); ?>">Rekomendasi</a>
                     </div>
