@@ -90,7 +90,7 @@ if ($wa && $wa !== '#') {
                         <span class="text-white">|</span>
                         <a class="text-white px-3" href="">Support</a>
                         <span class="text-white">|</span>
-                        <a class="text-white pl-3" href="contact.html">Contact</a>
+                        <a class="text-white pl-3" href="contact.php">Contact</a>
                     </div>
                 </div>
                 <div class="col-md-6 text-center text-lg-right">
