@@ -1,5 +1,5 @@
 <?php include '../includes/db.php'; ?>
-<?php include '../includes/header.php'; ?>
+<?php include '../includes/header-admin.php'; ?>
 
 <div class="container py-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
@@ -48,4 +48,4 @@
   </table>
 </div>
 
-<?php include '../includes/footer.php'; ?>
+<?php include '../includes/footer-admin.php'; ?>

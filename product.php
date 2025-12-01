@@ -1,3 +1,9 @@
+<?php include './includes/db.php'; ?>
+
+<?php
+$products = $conn->query("SELECT p.*, k.nama_kategori FROM produk p LEFT JOIN kategori k ON p.kategori_id = k.id ORDER BY p.id DESC");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,26 +14,16 @@
     <meta content="Make Up, Beauty, Skincare" name="keywords">
     <meta content="Professional Make Up & Beauty Care Website Template" name="description">
 
-    <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Topbar Start -->
     <div class="container-fluid bg-primary py-3 d-none d-md-block">
         <div class="container">
             <div class="row">
@@ -44,27 +40,16 @@
                 </div>
                 <div class="col-md-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                        <a class="text-white px-3" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="text-white px-3" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="text-white px-3" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="text-white px-3" href=""><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Topbar End -->
 
-
-    <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-white navbar-light shadow p-lg-0">
@@ -78,13 +63,13 @@
                     <div class="navbar-nav ml-auto py-0">
                         <a href="index.html" class="nav-item nav-link">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="product.html" class="nav-item nav-link active">Products</a>
+                        <a href="product.php" class="nav-item nav-link active">Products</a>
                     </div>
                     <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
                         <h1 class="m-0 display-4 text-primary"><span class="text-secondary">Glam</span>Up</h1>
                     </a>
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="service.html" class="nav-item nav-link">Services</a>
+                        <a href="service.php" class="nav-item nav-link">Services</a>
                         <a href="gallery.html" class="nav-item nav-link">Gallery</a>
                         <a href="rekomendasi.html" class="nav-item nav-link">Rekomendasi</a>
                     </div>
@@ -92,60 +77,65 @@
             </nav>
         </div>
     </div>
-    <!-- Navbar End -->
 
-
-    <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
             <h1 class="text-white display-3 mt-lg-5">Products</h1>
             <div class="d-inline-flex align-items-center text-white">
-                <p class="m-0"><a class="text-white" href="">Home</a></p>
+                <p class="m-0"><a class="text-white" href="index.html">Home</a></p>
                 <i class="fa fa-circle px-3"></i>
                 <p class="m-0">Products</p>
             </div>
         </div>
     </div>
-    <!-- Header End -->
 
-
-    <!-- Detail Start -->
-    <div class="container-fluid my-5 py-5 px-0">
-    <div class="row bg-primary m-0">
-        <div class="col-md-6 px-0" style="min-height: 500px;">
-        <div class="position-relative h-100">
-            <img class="position-absolute w-100 h-100" src="img/portfolio-3.jpg" style="object-fit: cover;">
-        </div>
-        </div>
-        <div class="col-md-6 py-5 py-md-0 px-0">
-        <div class="h-100 d-flex flex-column align-items-center justify-content-center text-center p-5">
-            <!-- Kategori Produk -->
-            <span class="badge badge-light text-primary px-3 py-2 mb-3" style="font-size: 15px; font-weight: 500;">
-            Kategori: Kosmetik Bibir
-            </span>
-            <!-- Nama Produk -->
-            <h3 class="font-weight-bold text-white mt-2 mb-3">
-            Wardah - Colorfit Velvet Matte Lip Mousse
-            </h3>
-            <!-- Harga -->
-            <h4 class="text-white mb-3" style="font-weight: 600;">
-              Rp73.508
-            </h4>
-            <!-- Deskripsi -->
-            <p class="text-white mb-4">
-            Wardah Colorfit Velvet Matte Lip Mousse adalah lip cream dengan tekstur mousse (seperti busa) yang diformulasikan untuk memberikan hasil akhir matte yang terasa lembut dan nyaman di bibir, sangat cocok untuk penggunaan sehari-hari.
-            </p>
-            <!-- Tombol Order -->
-            <a href="https://shopee.co.id/WARDAH-COLORFIT-VELVET-MATTE-LIP-MOUSSE-i.15918425.2636891129"
-            class="btn btn-secondary py-3 px-5 mt-2">Order Now</a>
-        </div>
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <h1 class="section-title position-relative text-center mb-5">Temukan informasi lengkap tentang produk makeup favoritmu!</h1>
+                </div>
+            </div>
+            <div class="row">
+                <?php if ($products && $products->num_rows > 0): ?>
+                    <?php while ($row = $products->fetch_assoc()): ?>
+                        <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                            <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                                <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                    <h4 class="font-weight-bold text-white mb-0"></h4>
+                                </div>
+                                <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
+                                    <?php
+                                    $image = 'img/placeholder-product.jpg';
+                                    if (!empty($row['gambar'])) {
+                                        $image = 'uploads/' . $row['gambar'];
+                                    }
+                                    ?>
+                                    <img class="rounded-circle w-100 h-100" src="<?= htmlspecialchars($image); ?>" style="object-fit: cover;">
+                                </div>
+                                <h5 class="font-weight-bold mb-4"><?= htmlspecialchars($row['judul']); ?></h5>
+                                <div class="text-muted mb-2" style="font-size: 0.9rem;">
+                                    <?= htmlspecialchars($row['nama_kategori'] ?: 'Tanpa Kategori'); ?>
+                                </div>
+                                <div class="mb-3">
+                                    <h4 class="font-weight-bold text-primary mb-0">Rp<?= number_format($row['harga'], 0, ',', '.'); ?></h4>
+                                </div>
+                                <a href="detail.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-secondary">Detail Products</a>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <div class="col-12 text-center">
+                        <p class="text-muted">Produk belum tersedia. Silakan cek kembali nanti.</p>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="col-12 text-center">
+                <a href="#" class="btn btn-primary py-3 px-5">Load More</a>
+            </div>
         </div>
     </div>
-    </div>
-    <!-- Detail End -->
 
-
-    <!-- Footer Start -->
     <div class="container-fluid footer bg-light py-5" style="margin-top: 90px">
       <div class="container text-center py-5">
         <div class="row">
@@ -157,24 +147,14 @@
             </a>
           </div>
           <div class="col-12 mb-4">
-            <a class="btn btn-outline-secondary btn-social mr-2" href="#"
-              ><i class="fab fa-twitter"></i
-            ></a>
-            <a class="btn btn-outline-secondary btn-social mr-2" href="#"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
-            <a class="btn btn-outline-secondary btn-social mr-2" href="#"
-              ><i class="fab fa-linkedin-in"></i
-            ></a>
-            <a class="btn btn-outline-secondary btn-social" href="#"
-              ><i class="fab fa-instagram"></i
-            ></a>
+            <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
+            <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+            <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a class="btn btn-outline-secondary btn-social" href="#"><i class="fab fa-instagram"></i></a>
           </div>
           <div class="col-12 mt-2 mb-4">
             <div class="row">
-              <div
-                class="col-sm-6 text-center text-sm-right border-right mb-3 mb-sm-0"
-              >
+              <div class="col-sm-6 text-center text-sm-right border-right mb-3 mb-sm-0">
                 <h5 class="font-weight-bold mb-2">Hubungi Kami</h5>
                 <p class="mb-2">Jl. Raya Telang, Perumahan Telang Indah.</p>
                 <p class="mb-0">0878 6277 6120</p>
@@ -194,14 +174,9 @@
         </div>
       </div>
     </div>
-    <!-- Footer End -->
 
-
-    <!-- Back to Top -->
     <a href="#" class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-
-    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
@@ -209,12 +184,6 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
 
