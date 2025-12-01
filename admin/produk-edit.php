@@ -7,7 +7,6 @@ $data = $conn->query("SELECT * FROM produk WHERE id=$id")->fetch_assoc();
 $kategori = $conn->query("SELECT * FROM kategori");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
   $judul = $_POST['judul'];
   $deskripsi = $_POST['deskripsi'];
   $kategori_id = $_POST['kategori_id'] ?: 'NULL';
