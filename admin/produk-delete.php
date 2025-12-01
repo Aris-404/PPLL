@@ -8,5 +8,6 @@ if (file_exists("../uploads/" . $data['gambar'])) {
 }
 
 $conn->query("DELETE FROM produk WHERE id=$id");
+
 header("Location: produk-index.php");
 exit;
