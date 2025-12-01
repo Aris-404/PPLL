@@ -1,94 +1,76 @@
+<?php include 'includes/db.php'; ?>
 <?php include 'includes/header.php'; ?>
 
-    <!-- Header Start -->
-    <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
-        <div class="container text-center py-5">
-            <h1 class="text-white display-3 mt-lg-5">Beauty Products</h1>
-            <div class="d-inline-flex align-items-center text-white">
-                <p class="m-0"><a class="text-white" href="">Cosmetic</a></p>
-                <i class="fa fa-circle px-3"></i>
-                <p class="m-0">Elegant</p>
-            </div>
+<!-- Header Start -->
+<div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3 mt-lg-5">Beauty Products</h1>
+        <div class="d-inline-flex align-items-center text-white">
+            <p class="m-0"><a class="text-white" href="">Cosmetic</a></p>
+            <i class="fa fa-circle px-3"></i>
+            <p class="m-0">Elegant</p>
         </div>
     </div>
-    <!-- Header End -->
+</div>
+<!-- Header End -->
 
-    <!--Home Start-->
-    <div class="container-fluid py-5">
+<!--Home Start-->
+<div class="container-fluid py-5">
     <div class="container py-5">
         <div class="row">
             <div class="col-lg-6">
                 <h1 class="section-title position-relative mb-5">Best Seller Products</h1>
             </div>
-            <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0"></div>
         </div>
+
         <div class="row">
             <div class="col-12">
                 <div class="owl-carousel product-carousel">
 
-                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                        
-                        <h5 class="font-weight-bold mb-4">Fondation Make Over</h5>
+                    <?php
+                    // Ambil data produk dari DB
+                    $query = "SELECT * FROM produk ORDER BY id DESC LIMIT 20";
+                    $result = mysqli_query($conn, $query);
 
-                        <div class="position-relative mb-4" style="width: 200px; height: 200px;">
-                            <img class="w-100 h-100" src="img/home_p1.jfif" style="object-fit: cover; border-radius: 6px;" alt="Hydrating serum"> 
-                        </div>
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
 
-                        <div class="mb-4">
-                            <h4 class="font-weight-bold text-primary mb-0">Rp.210.000</h4>
-                        </div>
-                        
-                        <a href="" class="btn btn-sm btn-secondary">Order Now</a>
-                    </div>
+                            <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
 
-                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                        <h5 class="font-weight-bold mb-4">Lipstik</h5>
-                        <div class="position-relative mb-4" style="width: 200px; height: 200px;">
-                            <img class="w-100 h-100" src="img/home_p2.jpg" style="object-fit: cover; border-radius: 6px;" alt="Vitamin C cleanser">
-                        </div>
-                        <div class="mb-4">
-                            <h4 class="font-weight-bold text-primary mb-0">Rp.156.000</h4>
-                        </div>
-                        <a href="" class="btn btn-sm btn-secondary">Order Now</a>
-                    </div>
-                    
-                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                        <h5 class="font-weight-bold mb-4">Blush On Implora</h5>
-                        <div class="position-relative mb-4" style="width: 200px; height: 200px;">
-                            <img class="w-100 h-100" src="img/home_p3.jfif" style="object-fit: cover; border-radius: 6px;" alt="Night cream">
-                        </div>
-                        <div class="mb-4">
-                            <h4 class="font-weight-bold text-primary mb-0">Rp.22.500</h4>
-                        </div>
-                        <a href="" class="btn btn-sm btn-secondary">Order Now</a>
-                    </div>
+                                <!-- Nama Produk -->
+                                <h5 class="font-weight-bold mb-4"><?= $row['judul']; ?></h5>
 
-                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                        <h5 class="font-weight-bold mb-4">PinkFlash Eyeshadow</h5>
-                        <div class="position-relative mb-4" style="width: 200px; height: 200px;">
-                            <img class="w-100 h-100" src="img/home_p4.webp" style="object-fit: cover; border-radius: 6px;" alt="Sunscreen">
-                        </div>
-                        <div class="mb-4">
-                            <h4 class="font-weight-bold text-primary mb-0">Rp.60.000</h4>
-                        </div>
-                        <a href="" class="btn btn-sm btn-secondary">Order Now</a>
-                    </div>
-                    
-                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                        <h5 class="font-weight-bold mb-4">Mascara Barenbliss</h5>
-                        <div class="position-relative mb-4" style="width: 200px; height: 200px;">
-                            <img class="w-100 h-100" src="img/home_p5.webp" style="object-fit: cover; border-radius: 6px;" alt="Eye cream">
-                        </div>
-                        <div class="mb-4">
-                            <h4 class="font-weight-bold text-primary mb-0">Rp.57.000</h4>
-                        </div>
-                        <a href="" class="btn btn-sm btn-secondary">Order Now</a>
-                    </div>
-                    
+                                <!-- Gambar -->
+                                <div class="position-relative mb-4" style="width: 200px; height: 200px;">
+                                    <img class="w-100 h-100"
+                                        src="uploads/<?= $row['gambar']; ?>"
+                                        style="object-fit: cover; border-radius: 6px;">
+                                </div>
+
+                                <!-- Harga -->
+                                <div class="mb-4">
+                                    <h4 class="font-weight-bold text-primary mb-0">
+                                        Rp <?= number_format($row['harga'], 0, ',', '.'); ?>
+                                    </h4>
+                                </div>
+
+                                <!-- Tombol Order -->
+                                <a href="./detail.php?id=<?= $row['id']; ?>" target="_blank" class="btn btn-sm btn-secondary">Detail Produk</a>
+                            </div>
+
+                    <?php
+                        }
+                    } else {
+                        echo "<p class='text-center py-5'>Belum ada produk tersedia.</p>";
+                    }
+                    ?>
+
                 </div>
             </div>
         </div>
     </div>
-    <!--Home End-->
+</div>
+<!--Home End-->
 
 <?php include 'includes/footer.php'; ?>
