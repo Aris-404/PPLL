@@ -1,165 +1,142 @@
-# 💄 CMS Makeup — Kelompok PPLL
+# 💄 Katalog Online Makeup dengan CMS - Kelompok PPLL
 
-Sebuah Content Management System (CMS) bertema produk makeup yang berfungsi sebagai katalog informasi, edukasi, dan rekomendasi. Semua transaksi diarahkan ke platform eksternal seperti Shopee.
+Sebuah website katalog online yang menampilkan produk makeup dengan sistem manajemen konten (CMS) untuk mempermudah pengelolaan data produk, kategori, dan konten website.
 
 ---
 
-## 📖 Ringkasan Proyek
+## 📖 Deskripsi Proyek
 
-CMS ini dibuat untuk menampilkan dan mengelola data produk makeup secara informatif. Website ini berfungsi sebagai pusat katalog, panduan pemilihan produk, serta rekomendasi bagi pengguna. Untuk pembelian, pengguna akan diarahkan ke platform pihak ketiga (mis. Shopee) melalui tautan eksternal.
+Proyek ini adalah website katalog online yang menampilkan produk makeup. Website ini berfungsi sebagai katalog digital untuk membantu pengguna menemukan produk berdasarkan kategori, filter, dan rekomendasi. Website ini tidak memiliki sistem transaksi internal, namun menyediakan tautan menuju platform e-commerce pihak ketiga seperti **Shopee** untuk pembelian.
 
 ---
 
 ## ✨ Fitur Utama
 
-- 🧭 **Dashboard Admin**
-- 🗂️ **Manajemen Produk**
-- 📝 **Editor Konten (Artikel, Tips, Panduan)**
-- 🔗 **Integrasi Tautan Marketplace (Shopee, dsb.)**
-- 🎯 **Sistem Rekomendasi**
-- 🖼️ **Manajemen Gambar dan Galeri**
-- 🔍 **SEO Optimized + Metadata**
-- 🧠 **Pencarian & Filter Produk**
-- 📊 **Tracking Klik ke Marketplace**
-- 💬 **Review & Rating (opsional)**
+- 🏠 **Katalog Produk Dinamis (CMS)** – Produk, kategori, dan konten dapat diatur melalui CMS
+- 🔍 **Sistem Rekomendasi** – Membantu pengguna menemukan produk yang sesuai
+- 📱 **Responsive Design** – Tampilan optimal di berbagai perangkat
+- 🔗 **Integrasi Marketplace** – Link pembelian ke Shopee
+- 🖼️ **Galeri Visual** – Tampilan foto produk berkualitas tinggi
 
 ---
 
-## 📄 Struktur Halaman (Public)
+## 📄 Struktur Halaman
 
-### 🏡 Beranda
+### 🏡 Home
 
-- Highlight produk unggulan
-- Konten edukasi singkat
-- Rekomendasi berdasarkan kategori populer
+Menampilkan highlight produk unggulan dan ringkasan katalog.
 
-### 👥 Tentang Kami
+### 👥 Tentang Kami (About)
 
-Berisi:
+Berisi informasi mengenai:
 
-- Profil brand
-- Visi & misi
-- Link akun marketplace resmi
+- Profil platform
+- Tujuan pembuatan katalog
+- Tim pengembang
 
 ### 📞 Kontak
 
-Informasi komunikasi:
+Berisi informasi kontak seperti:
 
 - WhatsApp
 - Email
 - Media sosial
-- Peta lokasi (jika ada fisik store/office)
+- Jam operasional _(opsional)_
 
-### 🎯 Rekomendasi Produk
+### 💡 Produk Rekomendasi
 
-Pengguna dapat memilih berdasarkan:
+Berisi rekomendasi berdasarkan:
 
 - Jenis kulit
 - Warna kulit
-- Hasil akhir makeup
-- Kebutuhan dan preferensi
+- Kategori makeup
+- Tips pemilihan produk
 
-### 🖼️ Galeri Visual
+### 🖼️ Galeri
 
-- Foto close-up produk
-- Before/after dan lookbook
+Menampilkan koleksi foto produk secara visual.
 
-### 🛍️ Katalog Produk
+### 🛍️ Daftar Produk
 
-Berisi seluruh daftar produk dengan:
+Menampilkan katalog lengkap dengan fitur:
 
-- Filter kategori
+- Filter kategori dan jenis produk
 - Pencarian
-- Sort harga/rating/popularitas
-- Status ketersediaan (tampilan, bukan real-time)
+- Informasi harga dan stok
 
 ### 🔍 Detail Produk
 
-Informasi lengkap termasuk:
+Berisi informasi lengkap setiap produk:
 
-- Foto multi-angle
-- Deskripsi
-- Ingredients & spesifikasi
+- Foto produk
+- Deskripsi lengkap
+- Spesifikasi
 - Cara penggunaan
-- Review & rating
-- Tombol **"Beli via Shopee"** (tautan eksternal)
+- Review _(opsional)_
+- Link pembelian marketplace seperti Shopee
 
-### 🛠️ Panduan & Artikel
+### 🛠️ Panduan / Service
 
 Berisi:
 
-- Tips memilih makeup
-- FAQ
-- Tutorial
-- Artikel edukasi
+- Cara menggunakan katalog
+- Tips & FAQ
+- Edukasi dasar makeup
 
 ---
 
-Field inti untuk produk:
+## 🚀 Teknologi yang Digunakan
 
-- Title / slug
-- Brand
-- Gambar
-- Ingredients
-- Deskripsi
-- Varian
-- Tags & kategori
-- External link marketplace
-- Spesifikasi (tone, coverage, finish, dll.)
-
----
-
-## 🚀 Teknologi
-
-- Headless CMS (Strapi / Directus / Sanity)
-- Front-end (Next.js / Nuxt)
-- Database (PostgreSQL)
-- Storage (S3 compatible)
-- Search (Meilisearch / Elastic)
-- Tracking & Analytics
-
----
-
-## 🔗 Integrasi Marketplace
-
-- Tombol "Beli Sekarang" mengarah ke link eksternal (Shopee)
-- Tracking klik
-- Opsi parameter UTM
+- **HTML5**
+- **CSS3**
+- **JavaScript**
+- **Library Eksternal**:
+  - Owl Carousel
+  - Lightbox
+  - Isotope
+  - CounterUp
+  - Waypoints
 
 ---
 
 ## 🎯 Target Pengguna
 
-- Pengguna yang membutuhkan rekomendasi dan referensi makeup
-- Beauty enthusiast
-- Calon pembeli marketplace eksternal
+- Wanita usia 15–45 tahun
+- Pengguna produk makeup dan skincare
+- Konsumen yang ingin membandingkan produk sebelum membeli
+- Pengguna marketplace seperti Shopee
 
 ---
 
-## 📱 Responsivitas & UX
+## 🔗 Integrasi Platform
 
-- Mobile-first
-- Tampilan minimalis & estetik
-- Navigasi jelas
-- Optimasi gambar
+Website ini tidak menyediakan sistem transaksi internal. Setiap halaman produk menyediakan tautan ke marketplace seperti **Shopee** untuk proses pembelian.
 
 ---
 
-## 📑 Roadmap Pengembangan
+## 👥 Tim Pengembang
 
-| Tahap | Fokus                                        |
-| ----- | -------------------------------------------- |
-| MVP   | Katalog produk + link eksternal              |
-| v1    | Rekomendasi + galeri + artikel               |
-| v2    | Sistem quiz rekomendasi + analytics lanjutan |
-| v3    | Affiliate integration (opsional)             |
+Dikembangkan oleh **Kelompok PPLL** sebagai bagian dari proyek mata kuliah PPLL (Proyek Perangkat Lunak Lanjut).
 
 ---
 
-## 👥 Pengembang
+## 📱 Responsivitas
 
-Dikembangkan oleh **Kelompok PPLL — Universitas Trunojoyo Madura**
+Website dapat diakses dengan baik melalui:
+
+- Desktop/Laptop
+- Tablet
+- Smartphone
 
 ---
 
-_Dibuat dengan ❤️ sebagai bagian dari Proyek Perangkat Lunak Lanjut_
+## 🎨 UI/UX Design
+
+- Desain modern dan ramah pengguna
+- Warna disesuaikan dengan tema makeup
+- Navigasi mudah dipahami
+- Waktu loading cepat
+
+---
+
+_Dibuat dengan ❤️ oleh Kelompok PPLL - Universitas Trunojoyo Madura_
