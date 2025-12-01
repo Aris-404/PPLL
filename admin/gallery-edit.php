@@ -1,5 +1,5 @@
 <?php 
-include '../includes/header.php';
+include '../includes/header-admin.php';
 include '../includes/db.php';
 
 // Ambil ID
@@ -104,4 +104,4 @@ if (isset($_POST['submit'])) {
     </div>
 </div>
 
-<?php include '../includes/footer.php'; ?>
+<?php include '../includes/footer-admin.php'; ?>
