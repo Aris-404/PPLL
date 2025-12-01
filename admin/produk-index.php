@@ -22,6 +22,7 @@
     <tbody>
       <?php
       $no = 1;
+
       $sql = "SELECT p.*, k.nama AS nama_kategori 
                     FROM produk p 
                     LEFT JOIN kategori k ON p.kategori_id = k.id 
