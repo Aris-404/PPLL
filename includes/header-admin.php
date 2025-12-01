@@ -9,6 +9,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,31 +27,34 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-    <a class="navbar-brand" href="#">Admin Panel</a>
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+        <a class="navbar-brand" href="#">Admin Panel</a>
 
-    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item"><a href="../index-admin.php" class="nav-link">Dashboard</a></li>
-            <li class="nav-item"><a href="../produk.php" class="nav-link">Produk</a></li>
-            <li class="nav-item"><a href="../tim.php" class="nav-link">Tim</a></li>
-            <li class="nav-item"><a href="../testimoni.php" class="nav-link">Testimoni</a></li>
-            <li class="nav-item"><a href="../admin/gallery-index.php" class="nav-link">Gallery</a></li>
-            <li class="nav-item"><a href="../setting.php" class="nav-link">Setting</a></li>
-        </ul>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <ul class="navbar-nav">
-            <li class="nav-item"><a href="logout.php" class="nav-link text-danger">Logout</a></li>
-        </ul>
-    </div>
-</nav>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="./index.php" class="nav-link">Dashboard</a></li>
+                <li class="nav-item"><a href="./produk-index.php" class="nav-link">Produk</a></li>
+                <li class="nav-item"><a href="./tim.php" class="nav-link">Tim</a></li>
+                <li class="nav-item"><a href="./testimoni.php" class="nav-link">Testimoni</a></li>
+                <li class="nav-item"><a href="./gallery-index.php" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="./setting.php" class="nav-link">Setting</a></li>
+                <li class="nav-item"><a href="./kategori-index.php" class="nav-link">Kategori</a></li>
+                <li class="nav-item"><a href="./service-index.php" class="nav-link">Service</a></li>
+            </ul>
 
-<div class="container mt-4">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="logout.php" class="nav-link text-danger">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
