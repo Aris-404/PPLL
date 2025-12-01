@@ -94,9 +94,9 @@
           class="collapse navbar-collapse justify-content-between"
           id="navbarCollapse">
           <div class="navbar-nav ml-auto py-0">
-            <a href="index.html" class="nav-item nav-link">Home</a>
-            <a href="about.html" class="nav-item nav-link">About</a>
-            <a href="product.html" class="nav-item nav-link">Products</a>
+            <a href="index.php" class="nav-item nav-link">Home</a>
+            <a href="about.php" class="nav-item nav-link">About</a>
+            <a href="product.php" class="nav-item nav-link">Products</a>
           </div>
           <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
             <h1 class="m-0 display-4 text-primary">
@@ -104,8 +104,8 @@
             </h1>
           </a>
           <div class="navbar-nav mr-auto py-0">
-            <a href="service.html" class="nav-item nav-link active">Services</a>
-            <a href="gallery.html" class="nav-item nav-link">Gallery</a>
+            <a href="service.php" class="nav-item nav-link active">Services</a>
+            <a href="gallery.php" class="nav-item nav-link">Gallery</a>
             <a href="contact.html" class="nav-item nav-link">Rekomendasi</a>
           </div>
         </div>

@@ -1,31 +1,28 @@
-<?php
-// about.php — converted from about.html
-include 'includes/header.php';
-include_once 'includes/db.php';
-
-$q = mysqli_query($conn, "SELECT * FROM tim ORDER BY id DESC");
-$teams = [];
-if($q){
-    while($r = mysqli_fetch_assoc($q)) $teams[] = $r;
-}
-
-function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
-
+<?php 
+include 'includes/db.php'; // hanya koneksi database
 ?>
 
-    <!-- Header Start (page title) -->
-    <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
-        <div class="container text-center py-5">
-            <h1 class="text-white display-3 mt-lg-5">About</h1>
-            <div class="d-inline-flex align-items-center text-white">
-                <p class="m-0"><a class="text-white" href="index.php">Home</a></p>
-                <i class="fa fa-circle px-3"></i>
-                <p class="m-0">About</p>
-            </div>
+<?php include 'includes/header.php'; ?>
+
+<?php
+$tim = $conn->query("SELECT * FROM tim ORDER BY id DESC");
+?>
+
+    <!-- Header Start -->
+    <div
+      class="jumbotron jumbotron-fluid page-header"
+      style="margin-bottom: 90px"
+    >
+      <div class="container text-center py-5">
+        <h1 class="text-white display-3 mt-lg-5">About</h1>
+        <div class="d-inline-flex align-items-center text-white">
+          <p class="m-0"><a class="text-white" href="">Home</a></p>
+          <i class="fa fa-circle px-3"></i>
+          <p class="m-0">About</p>
         </div>
+      </div>
     </div>
     <!-- Header End -->
-
 
     <!-- About Start -->
     <div class="container-fluid py-5">
@@ -71,150 +68,51 @@ Kami menggabungkan kreativitas dan inovasi untuk memberikan Anda pengalaman make
                 </div>
                 <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0"></div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="owl-carousel team-carousel">
-                        <?php if(!empty($teams)): ?>
-                            <?php foreach($teams as $t):
-                                $foto = (!empty($t['foto']) ? $t['foto'] : 'img/team-1.jpg');
-                                $nama = !empty($t['nama']) ? $t['nama'] : 'Nama';
-                                $nim = !empty($t['nim']) ? $t['nim'] : 'NIM';
-                                $sos = !empty($t['sosmed']) ? $t['sosmed'] : '#';
-                            ?>
-                            <div class="team-item">
-                                <div class="team-img mx-auto">
-                                    <img class="rounded-circle w-100 h-100" src="<?= h($foto) ?>" style="object-fit: cover;">
-                                </div>
-                                <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                    <h3 class="font-weight-bold mt-5 mb-3 pt-5"><?= h($nama) ?></h3>
-                                    <h6 class="text-uppercase text-muted mb-4"><?= h($nim) ?></h6>
-                                    <div class="d-flex justify-content-center pt-1">
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="<?= h($sos) ?>"><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="<?= h($sos) ?>"><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="<?= h($sos) ?>"><i class="fab fa-linkedin-in"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <!-- Fallback: original static items when DB empty -->
-                            <div class="team-item">
-                                <div class="team-img mx-auto">
-                                    <img class="rounded-circle w-100 h-100" src="img/aris.jpg" style="object-fit: cover;">
-                                </div>
-                                <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                    <h3 class="font-weight-bold mt-5 mb-3 pt-5">Aris</h3>
-                                    <h6 class="text-uppercase text-muted mb-4">220411100192</h6>
-                                    <div class="d-flex justify-content-center pt-1">
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="team-item">
-                                <div class="team-img mx-auto">
-                                    <img class="rounded-circle w-100 h-100" src="img/nita.jpg" style="object-fit: cover;">
-                                </div>
-                                <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                    <h3 class="font-weight-bold mt-5 mb-3 pt-5">Nita</h3>
-                                    <h6 class="text-uppercase text-muted mb-4">220411100048</h6>
-                                    <div class="d-flex justify-content-center pt-1">
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="team-item">
-                                <div class="team-img mx-auto">
-                                    <img class="rounded-circle w-100 h-100" src="img/shafy.jpg" style="object-fit: cover;">
-                                </div>
-                                <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                    <h3 class="font-weight-bold mt-5 mb-3 pt-5">Shafy</h3>
-                                    <h6 class="text-uppercase text-muted mb-4">220411100096</h6>
-                                    <div class="d-flex justify-content-center pt-1">
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="team-item">
-                                <div class="team-img mx-auto">
-                                    <img class="rounded-circle w-100 h-100" src="img/cinta.jpg" style="object-fit: cover;">
-                                </div>
-                                <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                    <h3 class="font-weight-bold mt-5 mb-3 pt-5">Cinta</h3>
-                                    <h6 class="text-uppercase text-muted mb-4">220411100122</h6>
-                                    <div class="d-flex justify-content-center pt-1">
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="team-item">
-                                <div class="team-img mx-auto">
-                                    <img class="rounded-circle w-100 h-100" src="img/ridwan.PNG" style="object-fit: cover;">
-                                </div>
-                                <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                    <h3 class="font-weight-bold mt-5 mb-3 pt-5">Ridwan</h3>
-                                    <h6 class="text-uppercase text-muted mb-4">220411100057</h6>
-                                    <div class="d-flex justify-content-center pt-1">
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="team-item">
-                                <div class="team-img mx-auto">
-                                    <img class="rounded-circle w-100 h-100" src="img/putri.jpg" style="object-fit: cover;">
-                                </div>
-                                <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                    <h3 class="font-weight-bold mt-5 mb-3 pt-5">Putri</h3>
-                                    <h6 class="text-uppercase text-muted mb-4">220411100171</h6>
-                                    <div class="d-flex justify-content-center pt-1">
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="team-item">
-                                <div class="team-img mx-auto">
-                                    <img class="rounded-circle w-100 h-100" src="img/reza.PNG" style="object-fit: cover;">
-                                </div>
-                                <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                    <h3 class="font-weight-bold mt-5 mb-3 pt-5">Reza</h3>
-                                    <h6 class="text-uppercase text-muted mb-4">220411100180</h6>
-                                    <div class="d-flex justify-content-center pt-1">
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="team-item">
-                                <div class="team-img mx-auto">
-                                    <img class="rounded-circle w-100 h-100" src="img/bima.jpg" style="object-fit: cover;">
-                                </div>
-                                <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                    <h3 class="font-weight-bold mt-5 mb-3 pt-5">Bima</h3>
-                                    <h6 class="text-uppercase text-muted mb-4">220411100119</h6>
-                                    <div class="d-flex justify-content-center pt-1">
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endif; ?>
+
+    <div class="owl-carousel team-carousel">
+        <?php 
+        $team = $conn->query("SELECT * FROM tim");
+        while ($row = $team->fetch_assoc()): 
+        ?>
+            <div class="team-item">
+                <div class="team-img mx-auto">
+                    <img class="rounded-circle w-100 h-100" 
+                        src="uploads/<?= $row['foto']; ?>" 
+                        style="object-fit: cover;">
+                </div>
+
+                <div class="position-relative text-center bg-light rounded px-4 py-5" 
+                    style="margin-top: -100px;">
+                    
+                    <h3 class="font-weight-bold mt-5 mb-3 pt-5">
+                        <?= htmlspecialchars($row['nama']); ?>
+                    </h3>
+
+                    <h6 class="text-uppercase text-muted mb-4">
+                        <?= htmlspecialchars($row['nim']); ?>
+                    </h6>
+
+                    <div class="d-flex justify-content-center pt-1">
+                        <a class="btn btn-outline-secondary btn-social mr-2" 
+                        href="<?= htmlspecialchars($row['sosmed']); ?>" 
+                        target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-outline-secondary btn-social mr-2" 
+                        href="<?= htmlspecialchars($row['sosmed']); ?>" 
+                        target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="btn btn-outline-secondary btn-social mr-2" 
+                        href="<?= htmlspecialchars($row['sosmed']); ?>" 
+                        target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
+
                 </div>
             </div>
-        </div>
+        <?php endwhile; ?>
     </div>
     <!-- Team End -->
 
