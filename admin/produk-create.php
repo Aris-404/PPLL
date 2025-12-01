@@ -1,5 +1,28 @@
 <?php include '../includes/db.php'; ?>
 
+<?php
+$kategori = $conn->query("SELECT * FROM kategori");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  $judul = $_POST['judul'];
+  $deskripsi = $_POST['deskripsi'];
+  $kategori_id = $_POST['kategori_id'] ?: 'NULL';
+  $harga = $_POST['harga'];
+  $link = $_POST['link'];
+
+  // Upload gambar
+  $fileName = time() . "-" . basename($_FILES["gambar"]["name"]);
+  move_uploaded_file($_FILES["gambar"]["tmp_name"], "../uploads/$fileName");
+
+  $conn->query("INSERT INTO produk (judul, gambar, deskripsi, kategori_id, harga, link)
+                  VALUES ('$judul','$fileName','$deskripsi',$kategori_id,'$harga','$link')");
+
+  header("Location: produk-index.php");
+  exit;
+}
+?>
+
 <?php include '../includes/header.php'; ?>
 
 <div class="container py-5">
@@ -18,7 +41,9 @@
           <label class="form-label">Kategori</label>
           <select name="kategori_id" class="form-select">
             <option value="">-- Pilih Kategori --</option>
-            <option value="">Kategori 1</option>
+            <?php while ($k = $kategori->fetch_assoc()): ?>
+              <option value="<?= $k['id']; ?>"><?= $k['nama']; ?></option>
+            <?php endwhile; ?>
           </select>
         </div>
 
