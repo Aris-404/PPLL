@@ -43,7 +43,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item"><a href="./index.php" class="nav-link">Dashboard</a></li>
                 <li class="nav-item"><a href="./produk-index.php" class="nav-link">Produk</a></li>
-                <li class="nav-item"><a href="./tim.php" class="nav-link">Tim</a></li>
+                <li class="nav-item"><a href="./tim-index.php" class="nav-link">Tim</a></li>
                 <li class="nav-item"><a href="./testimoni.php" class="nav-link">Testimoni</a></li>
                 <li class="nav-item"><a href="./gallery-index.php" class="nav-link">Gallery</a></li>
                 <li class="nav-item"><a href="./setting.php" class="nav-link">Setting</a></li>
