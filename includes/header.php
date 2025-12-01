@@ -136,7 +136,7 @@ if ($wa && $wa !== '#') {
 
                     <div class="navbar-nav ml-auto py-0">
                         <a href="index.php" class="nav-item nav-link <?php echo nav_active(array('index.php','index.html')); ?>">Home</a>
-                        <a href="about.html" class="nav-item nav-link <?php echo nav_active(array('about.html')); ?>">About</a>
+                        <a href="about.php" class="nav-item nav-link <?php echo nav_active(array('about.php')); ?>">About</a>
                         <a href="product.php" class="nav-item nav-link <?php echo nav_active(array('product.php')); ?>">Products</a>
                     </div>
                     <a href="index.php" class="navbar-brand mx-5 d-none d-lg-block">
