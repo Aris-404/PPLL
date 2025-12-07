@@ -1,6 +1,7 @@
-<?php
-include 'koneksi.php';
+<?php include '../includes/header-admin.php'; ?>
+<?php include '../includes/db.php'; ?>
 
+<?php
 $id = $_GET['id'];
 
 // Ambil Data User
@@ -56,3 +57,5 @@ if (isset($_POST['update'])) {
 
 </body>
 </html>
+
+<?php include '../includes/footer-admin.php'; ?>

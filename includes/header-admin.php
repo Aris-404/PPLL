@@ -1,10 +1,10 @@
 <?php
 // Cek session jika dipakai login
-// session_start();
-// if (!isset($_SESSION['username'])) {
-//     header("Location: login.php");
-//     exit;
-// }
+session_start();
+ if (!isset($_SESSION['username'])) {
+     header("Location: login.php");
+     exit;
+ }
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +49,7 @@
                 <li class="nav-item"><a href="./setting.php" class="nav-link">Setting</a></li>
                 <li class="nav-item"><a href="./kategori-index.php" class="nav-link">Kategori</a></li>
                 <li class="nav-item"><a href="./service-index.php" class="nav-link">Service</a></li>
+                <li class="nav-item"><a href="./admin_crud.php" class="nav-link">Admin</a></li>
             </ul>
 
             <ul class="navbar-nav">
