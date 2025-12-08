@@ -61,7 +61,7 @@
                                     <a href="./detail.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-secondary mr-2">
                                         <i class="fa fa-info-circle"></i> Detail Produk
                                     </a>
-                                    <a href="./rekomendasi.php?product_id=<?= $row['id']; ?>" class="btn btn-sm btn-primary">
+                                    <a href="rekomendasi.php= $row['id']; ?>" class="btn btn-sm btn-primary">
                                         <i class="fa fa-star"></i> Lihat Rekomendasi
                                     </a>
                                 </div>
