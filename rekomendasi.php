@@ -1,0 +1,609 @@
+<?php include 'includes/db.php'; ?>
+<?php include 'includes/header.php'; ?>
+
+<?php
+// Ambil data produk dari database
+$productsData = [];
+$queryProducts = "SELECT p.*, k.nama_kategori FROM produk p LEFT JOIN kategori k ON p.kategori_id = k.id ORDER BY p.id DESC";
+$resultProducts = mysqli_query($conn, $queryProducts);
+
+if ($resultProducts && mysqli_num_rows($resultProducts) > 0) {
+    while ($row = mysqli_fetch_assoc($resultProducts)) {
+        // Konversi harga ke range
+        $price_range = 'medium';
+        if ($row['harga'] < 150000) {
+            $price_range = 'low';
+        } elseif ($row['harga'] > 500000) {
+            $price_range = 'high';
+        }
+
+        // Rating default jika tidak ada
+        $rating = isset($row['rating']) ? floatval($row['rating']) : 4.5;
+
+        $productsData[] = [
+            'product_id' => $row['id'],
+            'name' => $row['judul'],
+            'category' => $row['nama_kategori'] ?? 'Umum',
+            'brand' => $row['brand'] ?? 'Unknown',
+            'skin_type' => $row['skin_type'] ?? 'Semua Jenis Kulit',
+            'rating' => $rating,
+            'price_range' => $price_range,
+            'price' => $row['harga'],
+            'description' => $row['deskripsi'] ?? '',
+            'link' => $row['link'] ?? '#',
+            'gambar' => $row['gambar'] ?? ''
+        ];
+    }
+}
+
+// Fungsi untuk format harga
+function formatPriceRange($range)
+{
+    switch ($range) {
+        case 'low':
+            return 'Rp 50rb - 150rb';
+        case 'medium':
+            return 'Rp 150rb - 500rb';
+        case 'high':
+            return 'Rp 500rb+';
+        default:
+            return 'Harga bervariasi';
+    }
+}
+
+// Fungsi untuk render rating bintang
+function renderStars($rating)
+{
+    $stars = '';
+    $fullStars = floor($rating);
+    $halfStar = ($rating - $fullStars) >= 0.5;
+
+    for ($i = 0; $i < $fullStars; $i++) {
+        $stars .= '<i class="fas fa-star"></i>';
+    }
+    if ($halfStar) {
+        $stars .= '<i class="fas fa-star-half-alt"></i>';
+    }
+    $emptyStars = 5 - ceil($rating);
+    for ($i = 0; $i < $emptyStars; $i++) {
+        $stars .= '<i class="far fa-star"></i>';
+    }
+    return $stars;
+}
+
+// Fungsi untuk mendapatkan produk serupa
+function getSimilarProducts($selectedProduct, $allProducts)
+{
+    $similarProducts = [];
+
+    foreach ($allProducts as $product) {
+        // Skip produk yang sama
+        if ($product['product_id'] == $selectedProduct['product_id']) {
+            continue;
+        }
+
+        $score = 0;
+
+        // Beri skor berdasarkan kesamaan
+        if ($product['category'] === $selectedProduct['category']) $score += 3;
+        if ($product['brand'] === $selectedProduct['brand']) $score += 2;
+        if ($product['skin_type'] === $selectedProduct['skin_type']) $score += 1;
+        if ($product['price_range'] === $selectedProduct['price_range']) $score += 1;
+
+        // Tambahkan ke daftar rekomendasi jika ada kesamaan
+        if ($score > 0) {
+            $similarProducts[] = [
+                'product' => $product,
+                'score' => $score,
+                'similarity' => min(100, 60 + ($score * 10))
+            ];
+        }
+    }
+
+    // Urutkan berdasarkan skor tertinggi
+    usort($similarProducts, function ($a, $b) {
+        return $b['score'] <=> $a['score'];
+    });
+
+    // Ambil maksimal 6 rekomendasi
+    return array_slice($similarProducts, 0, 6);
+}
+
+$productId = isset($_GET['product_id']) ? intval($_GET['product_id']) : null;
+$selectedProduct = null;
+$recommendations = [];
+
+// Cari produk yang dipilih jika ada product_id
+if ($productId) {
+    foreach ($productsData as $product) {
+        if ($product['product_id'] == $productId) {
+            $selectedProduct = $product;
+            break;
+        }
+    }
+
+    if ($selectedProduct) {
+        $recommendations = getSimilarProducts($selectedProduct, $productsData);
+    }
+}
+?>
+
+<style>
+    :root {
+        --primary-pink: #ff69b4;
+        --primary-dark: #d6336c;
+        --secondary: #ff9a8b;
+        --text-color: #4a4a4a;
+        --text-light: #8a8a8a;
+        --background: #fef6f9;
+        --card-bg: #ffffff;
+        --border: #f0e6ea;
+        --shadow: 0 8px 30px rgba(231, 84, 128, 0.08);
+    }
+
+    .product-card {
+        background: var(--card-bg);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 200px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 15px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        position: relative;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .product-image img {
+        transform: scale(1.05);
+    }
+
+    .product-image-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: #d1d8e0;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(231, 84, 128, 0.15);
+        border-color: var(--primary-pink);
+    }
+
+    .product-name {
+        font-weight: 600;
+        color: var(--text-color);
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        line-height: 1.4;
+        min-height: 50px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .product-brand {
+        color: var(--primary-pink);
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+    }
+
+    .product-category {
+        color: var(--text-light);
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+        background: #f8f9fa;
+        padding: 4px 10px;
+        border-radius: 12px;
+        display: inline-block;
+    }
+
+    .product-rating {
+        color: #ffc107;
+        margin: 12px 0;
+        font-size: 0.9rem;
+    }
+
+    .product-price {
+        background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        color: #2e7d32;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: 600;
+        display: inline-block;
+        margin-top: auto;
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+        box-shadow: 0 2px 8px rgba(46, 125, 50, 0.1);
+    }
+
+    .product-info-section {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-actions {
+        margin-top: auto;
+        padding-top: 15px;
+        border-top: 1px solid var(--border);
+    }
+
+    .similarity-badge {
+        background: linear-gradient(135deg, #ff69b4 0%, #ff9a8b 100%);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        display: inline-block;
+        box-shadow: 0 3px 10px rgba(255, 105, 180, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .card-header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 15px;
+        gap: 10px;
+    }
+
+    .card-header-section .product-name {
+        flex: 1;
+        margin: 0;
+    }
+
+    .filter-section {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+        margin-bottom: 30px;
+    }
+
+    .filter-btn {
+        background: white;
+        border: 2px solid var(--primary-pink);
+        color: var(--primary-pink);
+        padding: 10px 20px;
+        border-radius: 25px;
+        margin: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+        background: var(--primary-pink);
+        color: white;
+    }
+
+    .search-box {
+        padding: 15px 20px;
+        border: 2px solid var(--border);
+        border-radius: 25px;
+        width: 100%;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .search-box:focus {
+        outline: none;
+        border-color: var(--primary-pink);
+    }
+
+    .selected-product-section {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+        margin-bottom: 30px;
+        border-top: 5px solid var(--primary-pink);
+    }
+
+    .btn-shopee {
+        background: linear-gradient(135deg, #ff69b4 0%, #ff9a8b 100%);
+        color: white;
+        padding: 12px 25px;
+        border-radius: 10px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn-shopee:hover {
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+    }
+</style>
+
+<!-- Header Start -->
+<div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3 mt-lg-5">Rekomendasi Produk</h1>
+        <div class="d-inline-flex align-items-center text-white">
+            <p class="m-0"><a class="text-white" href="index.php">Home</a></p>
+            <i class="fa fa-circle px-3"></i>
+            <p class="m-0">Rekomendasi</p>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+<!-- Content Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+
+        <?php if ($selectedProduct): ?>
+            <!-- Selected Product Section -->
+            <div class="selected-product-section">
+                <h2 class="text-primary mb-4"><i class="fas fa-star"></i> Produk yang Anda Pilih</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3><?php echo htmlspecialchars($selectedProduct['name']); ?></h3>
+                        <div class="product-details mt-3">
+                            <p><strong><i class="fas fa-tag"></i> Brand:</strong> <?php echo htmlspecialchars($selectedProduct['brand']); ?></p>
+                            <p><strong><i class="fas fa-layer-group"></i> Kategori:</strong> <?php echo htmlspecialchars($selectedProduct['category']); ?></p>
+                            <p><strong><i class="fas fa-user"></i> Jenis Kulit:</strong> <?php echo htmlspecialchars($selectedProduct['skin_type']); ?></p>
+                            <p class="product-rating">
+                                <strong><i class="fas fa-star"></i> Rating:</strong>
+                                <?php echo renderStars($selectedProduct['rating']); ?>
+                                <span style="margin-left: 5px;"><?php echo $selectedProduct['rating']; ?>/5</span>
+                            </p>
+                            <p><strong><i class="fas fa-money-bill-wave"></i> Harga:</strong>
+                                <span class="product-price"><?php echo formatPriceRange($selectedProduct['price_range']); ?></span>
+                            </p>
+                            <?php if (isset($selectedProduct['link'])): ?>
+                                <a href="<?php echo htmlspecialchars($selectedProduct['link']); ?>" target="_blank" class="btn-shopee mt-3">
+                                    <i class="fas fa-shopping-cart"></i> Beli Produk di Shopee
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div style="padding: 20px; background: #fef6f9; border-radius: 10px; border-left: 4px solid #ff9a8b;">
+                            <p><strong><i class="fas fa-align-left"></i> Deskripsi Produk:</strong></p>
+                            <p><?php echo htmlspecialchars($selectedProduct['description']); ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations Section -->
+            <?php if (count($recommendations) > 0): ?>
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h2 class="section-title position-relative text-center mb-5">
+                            <i class="fas fa-heart"></i> Rekomendasi Produk Serupa
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <?php foreach ($recommendations as $rec):
+                        $product = $rec['product'];
+                        $imagePath = !empty($product['gambar']) ? 'uploads/' . $product['gambar'] : 'img/placeholder-product.jpg';
+                    ?>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="product-card">
+                                <!-- Gambar Produk -->
+                                <div class="product-image">
+                                    <?php if (!empty($product['gambar']) && file_exists($imagePath)): ?>
+                                        <img src="<?php echo htmlspecialchars($imagePath); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                                    <?php else: ?>
+                                        <div class="product-image-placeholder">
+                                            <i class="fas fa-image"></i>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="card-header-section">
+                                    <div class="product-name"><?php echo htmlspecialchars($product['name']); ?></div>
+                                    <div class="similarity-badge"><?php echo $rec['similarity']; ?>%</div>
+                                </div>
+
+                                <div class="product-info-section">
+                                    <div class="product-brand"><i class="fas fa-tag"></i> <?php echo htmlspecialchars($product['brand']); ?></div>
+                                    <div class="product-category"><i class="fas fa-layer-group"></i> <?php echo htmlspecialchars($product['category']); ?></div>
+
+                                    <div class="product-rating">
+                                        <?php echo renderStars($product['rating']); ?>
+                                        <span style="margin-left: 5px; color: var(--text-light); font-weight: 500;"><?php echo $product['rating']; ?></span>
+                                    </div>
+
+                                    <div style="margin-bottom: 10px; font-size: 0.85rem; color: var(--text-light);">
+                                        <i class="fas fa-user-circle"></i> <?php echo htmlspecialchars($product['skin_type']); ?>
+                                    </div>
+
+                                    <div class="product-price"><i class="fas fa-money-bill-wave"></i> <?php echo formatPriceRange($product['price_range']); ?></div>
+                                </div>
+
+                                <?php if (isset($product['link']) && $product['link'] != '#'): ?>
+                                    <div class="product-actions">
+                                        <a href="<?php echo htmlspecialchars($product['link']); ?>" target="_blank" class="btn btn-sm btn-secondary btn-block">
+                                            <i class="fas fa-shopping-cart"></i> Lihat di Shopee
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <div class="text-center py-5">
+                    <i class="fas fa-info-circle" style="font-size: 3rem; color: #ff9a8b;"></i>
+                    <p class="mt-3">Tidak ada rekomendasi produk serupa yang ditemukan.</p>
+                </div>
+            <?php endif; ?>
+
+        <?php else: ?>
+            <!-- All Products Section -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="section-title position-relative text-center mb-5">Semua Produk Kecantikan</h2>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <input type="text" id="searchInput" class="search-box" placeholder="Cari produk berdasarkan nama, brand, atau kategori..." onkeyup="searchProducts()">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong class="d-block mb-2">Filter by Category:</strong>
+                        <button class="filter-btn active" onclick="filterProducts('all')">Semua</button>
+                        <button class="filter-btn" onclick="filterProducts('Masker Wajah')">Masker Wajah</button>
+                        <button class="filter-btn" onclick="filterProducts('Lipstick')">Lipstick</button>
+                        <button class="filter-btn" onclick="filterProducts('Eyeshadow')">Eyeshadow</button>
+                        <button class="filter-btn" onclick="filterProducts('Skincare Set')">Skincare Set</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="row" id="productsContainer">
+                <?php foreach ($productsData as $product):
+                    $imagePath = !empty($product['gambar']) ? 'uploads/' . $product['gambar'] : 'img/placeholder-product.jpg';
+                ?>
+                    <div class="col-lg-3 col-md-6 mb-4 product-item" data-category="<?php echo htmlspecialchars($product['category']); ?>" data-name="<?php echo htmlspecialchars(strtolower($product['name'])); ?>" data-brand="<?php echo htmlspecialchars(strtolower($product['brand'])); ?>">
+                        <div class="product-card">
+                            <!-- Gambar Produk -->
+                            <div class="product-image">
+                                <?php if (!empty($product['gambar']) && file_exists($imagePath)): ?>
+                                    <img src="<?php echo htmlspecialchars($imagePath); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                                <?php else: ?>
+                                    <div class="product-image-placeholder">
+                                        <i class="fas fa-image"></i>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+
+                            <div class="product-name"><?php echo htmlspecialchars($product['name']); ?></div>
+
+                            <div class="product-info-section">
+                                <div class="product-brand"><i class="fas fa-tag"></i> <?php echo htmlspecialchars($product['brand']); ?></div>
+                                <div class="product-category"><i class="fas fa-layer-group"></i> <?php echo htmlspecialchars($product['category']); ?></div>
+
+                                <div class="product-rating">
+                                    <?php echo renderStars($product['rating']); ?>
+                                    <span style="margin-left: 5px; color: var(--text-light); font-weight: 500;"><?php echo $product['rating']; ?></span>
+                                </div>
+
+                                <div style="margin-bottom: 10px; font-size: 0.85rem; color: var(--text-light);">
+                                    <i class="fas fa-user-circle"></i> <?php echo htmlspecialchars($product['skin_type']); ?>
+                                </div>
+
+                                <div class="product-price"><i class="fas fa-money-bill-wave"></i> <?php echo formatPriceRange($product['price_range']); ?></div>
+                            </div>
+
+                            <div class="product-actions">
+                                <a href="rekomendasi.php?product_id=<?php echo $product['product_id']; ?>" class="btn btn-sm btn-primary btn-block mb-2">
+                                    <i class="fas fa-heart"></i> Lihat Rekomendasi
+                                </a>
+                                <?php if (isset($product['link']) && $product['link'] != '#'): ?>
+                                    <a href="<?php echo htmlspecialchars($product['link']); ?>" target="_blank" class="btn btn-sm btn-secondary btn-block">
+                                        <i class="fas fa-shopping-cart"></i> Beli Produk
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
+    </div>
+</div>
+<!-- Content End -->
+
+<script>
+    function searchProducts() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const products = document.querySelectorAll('.product-item');
+
+        products.forEach(product => {
+            const name = product.getAttribute('data-name');
+            const brand = product.getAttribute('data-brand');
+            const category = product.getAttribute('data-category').toLowerCase();
+
+            if (name.includes(searchTerm) || brand.includes(searchTerm) || category.includes(searchTerm)) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    }
+
+    function filterProducts(category) {
+        // Update active button
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+
+        const products = document.querySelectorAll('.product-item');
+
+        products.forEach(product => {
+            const productCategory = product.getAttribute('data-category');
+
+            if (category === 'all' || productCategory === category) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    }
+
+    // Animation on load
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.product-card');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 50);
+        });
+    });
+</script>
+
+<?php include 'includes/footer.php'; ?>
