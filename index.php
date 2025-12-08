@@ -1,3 +1,4 @@
+<?php
 <?php include 'includes/db.php'; ?>
 <?php include 'includes/header.php'; ?>
 
@@ -55,8 +56,15 @@
                                     </h4>
                                 </div>
 
-                                <!-- Tombol Order -->
-                                <a href="./detail.php?id=<?= $row['id']; ?>" target="_blank" class="btn btn-sm btn-secondary">Detail Produk</a>
+                                <!-- Tombol Order dan Rekomendasi -->
+                                <div class="d-flex gap-2">
+                                    <a href="./detail.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-secondary mr-2">
+                                        <i class="fa fa-info-circle"></i> Detail Produk
+                                    </a>
+                                    <a href="./rekomendasi.php?product_id=<?= $row['id']; ?>" class="btn btn-sm btn-primary">
+                                        <i class="fa fa-star"></i> Lihat Rekomendasi
+                                    </a>
+                                </div>
                             </div>
 
                     <?php
