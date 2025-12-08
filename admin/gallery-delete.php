@@ -1,12 +1,25 @@
 <?php
-include "./includes/db.php";
+include "../includes/db.php"; // path yang benar
 
-$id = $_GET['id'];
+if (!isset($_GET['id'])) {
+    header("Location: gallery-index.php");
+    exit;
+}
 
-$q = mysqli_query($conn, "SELECT image FROM gallery WHERE id=$id");
+$id = intval($_GET['id']);
+
+// Ambil nama file gambar
+$q = mysqli_query($conn, "SELECT gambar FROM gallery WHERE id=$id");
 $d = mysqli_fetch_assoc($q);
-unlink("../upload/" . $d['image']);
 
+// Hapus file gambar jika ada
+if (!empty($d['gambar']) && file_exists("../upload/" . $d['gambar'])) {
+    unlink("../upload/" . $d['gambar']);
+}
+
+// Hapus data di database
 mysqli_query($conn, "DELETE FROM gallery WHERE id=$id");
 
-header("Location: index.php");
+// Redirect kembali ke halaman gallery
+header("Location: gallery-index.php");
+exit;
