@@ -149,7 +149,7 @@ if ($wa && $wa !== '#') {
           <div class="navbar-nav mr-auto py-0">
             <a href="service.php" class="nav-item nav-link <?php echo nav_active(array('service.php')); ?>">Services</a>
             <a href="gallery.php" class="nav-item nav-link <?php echo nav_active(array('gallery.php', 'gallery.html')); ?>">Gallery</a>
-            <a href="rekomendasi.html" class="nav-item nav-link <?php echo nav_active(array('rekomendasi.html')); ?>">Rekomendasi</a>
+            <a href="rekomendasi.php" class="nav-item nav-link <?php echo nav_active(array('rekomendasi.php')); ?>">Rekomendasi</a>
           </div>
         </div>
       </nav>
